@@ -1,0 +1,273 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #333;
+}
+
+.out {
+	width: 1000px;
+	margin: 0px auto;
+	border: 1px solid black;
+	overflow: hidden;
+}
+
+.headPic {
+	width: 950px;
+	height: 100px;
+	margin: 0px auto;
+}
+
+.headPic img {
+	width: 780px;
+	height: 95px;
+	margin: 0px auto;
+	display: block;
+}
+
+.showPic {
+	width: 360px;
+	height: 420px;
+	float: left;
+	margin-left: 25px;
+}
+
+.bigShow {
+	width: 350px;
+	height: 290px;
+	margin: 5px auto;
+}
+
+.bigShow img {
+	border: 1px solid #F2F2F2;
+	width: 310px;
+	height: 250px;
+	padding: 20px;
+}
+
+.showList {
+	width: 90%;
+	margin: 20px auto;
+}
+
+.showList img {
+	width: 56px;
+	height: 56px;
+	border: 2px solid white;
+}
+
+.showDetail {
+	width: 570px;
+	height: 420px;
+	float: left;
+	margin-left: 16px;
+}
+
+.showDetail .upHalf {
+	width: 570px;
+	height: 270px;
+}
+
+.showDetail .upHalf .title {
+	width: 510px;
+	height: 22px;
+	color: black;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0px 10px;
+}
+
+.showDetail .upHalf .subTitle {
+	width: 510px;
+	height: 22px;
+	color: #DD2727;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0px 10px;
+}
+
+.showDetail .upHalf .content {
+	width: 550px;
+	height: 144px;
+}
+
+.showDetail .upHalf .content .contentUp {
+	height: 38px;
+	width: 545px;
+	background-color: #2DA77A;
+	color: white;
+	text-align: center;
+	line-height: 40px;
+}
+
+.showDetail .upHalf .content .contentUp span {
+	font-size: 18px;
+	font-weight: bold;
+	font-family: Arial;
+}
+
+.showDetail .upHalf .content .contentDown {
+	height: 82px;
+	width: 525px;
+	background-image: url(../image/priceBackground.png);
+	padding: 10px;
+	color: #666666;
+	font-size: 12px;font-family: Arial;
+}
+
+.showDetail .upHalf .content .contentDown .first {
+	
+}
+.showDetail .upHalf .content .contentDown .first .pic img{
+	width: 48px;
+	height: 16px;
+	display:inline-block;
+	position: relative;
+	left: 0;
+	top: 4px;
+}
+.showDetail .upHalf .content .contentDown .first .rightAtPic{
+	display:inline-block;
+	height:30px;
+	line-height: 20px;
+}
+
+.showDetail .upHalf .content .contentDown .second {
+	
+}
+
+.showDetail .upHalf .content .contentDown .third{
+	
+}
+.showDetail .upHalf .content .contentDown .third .bigUp{
+	position: relative;
+	left:0;
+	top: -10px;
+}
+.showDetail .upHalf .content .contentDown .third .bigDown{
+	color: #c40000;
+	font-family: Arial;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.showDetail .mid {
+	border-top-style: dotted;
+	border-top-color: #C9C9C9;
+	border-top-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #C9C9C9;
+	border-bottom-width: 1px;
+	padding: 10px;
+	margin: 20px 0px;
+}
+
+.showDetail .upHalf .mid .one {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #E5DFDA;
+	display: inline-block;
+	width: 49%;
+	text-align: center;
+	color: #999999;
+	font-size: 12px;
+}
+
+.showDetail .upHalf .mid .two {
+	display: inline-block;
+	width: 49%;
+	text-align: center;
+	color: #999999;
+	font-size: 12px;
+}
+
+.showDetail .downHalf {
+	width: 570px;
+	height: 80px;
+	margin: 10px;
+}
+
+.showDetail .downHalf span {
+	font-size: 12px;
+	font-family: Arial;
+}
+
+.showDetail .downHalf .numberIn {
+	width: 34px;
+	height: 28px;
+}
+
+.showDetail .downHalf .fixChange {
+	display: inline-block;
+	width: 22px;
+	height: 32px;
+	vertical-align: top;
+}
+
+.showDetail .downHalf  .fixChange .upImg {
+	border: 1px solid #999;
+	display: block;
+	width: 20px;
+	height: 8px;
+	text-align: center;
+	padding-top: 4px;
+}
+
+.showDetail .downHalf .fixChange .midImg {
+	height: 4px;
+	width: 20px;
+	display: block;
+}
+
+.showDetail .downHalf .fixChange .downImg {
+	border: 1px solid #999;
+	display: block;
+	width: 20px;
+	height: 8px;
+	text-align: center;
+	padding-top: 4px;
+}
+
+.showDetail .downHalf .lastBottom p {
+	font-size: 12px;
+	font-family: Arial;
+	margin: 10px 0px;
+}
+
+.showDetail .bottomButton {
+	margin: 0px 70px;
+}
+.showDetail .bottomButton .firstOne,.secondOne{
+	display: inline-block;
+	margin: 0px 10px;
+	width: 180px;
+	height: 40px;
+	border: 1px solid #C40000;
+	text-align: center;
+	line-height: 40px;
+	font-size: 16px;
+	font-weight: 700;
+	font-family: arial
+}
+.showDetail .bottomButton .firstOne {
+	background-color: #FFEDED;
+	color: #C40000;
+}
+
+.showDetail .bottomButton  .secondOne{
+	background-color: #C40000;
+	color: #ffffff;
+}

@@ -1,0 +1,46 @@
+package com.zm.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="t_id_card")
+public class IDCard
+{
+    private int id;
+    private String no;
+    private Person person;
+    
+    @Id
+    @GeneratedValue
+    public int getId()
+    {
+        return id;
+    }
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+    public String getNo()
+    {
+        return no;
+    }
+    public void setNo(String no)
+    {
+        this.no = no;
+    }
+    @OneToOne//OnetoOneָ����һ��һ�Ĺ�����ϵ��һ��һ�����ָ��һ����ά��ӳ���ϵ������ѡ��IDCard������ά��
+    @JoinColumn(name="pid")//ָ����������� pid
+    public Person getPerson()
+    {
+        return person;
+    }
+    public void setPerson(Person person)
+    {
+        this.person = person;
+    }
+}

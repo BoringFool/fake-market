@@ -1,0 +1,195 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+a:link,a:visited,a:hover{
+	color:#337ab7;
+}
+
+
+ul {
+	list-style: none;
+}
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #333;
+}
+.nav{
+	width:100%;
+	height: 50px;
+	background-color: #000000;
+}
+.nav_tree{
+	width:1200px;
+	height: 35px;
+	margin: 20px auto;
+	background-color: #F5F5F5;
+}
+table {
+	min-width: 80%;
+	margin: 0px auto;
+	border-collapse: collapse;
+}
+
+thead {
+	background: #DFF0D8;
+}
+
+table,th,td {
+	border: 1px solid #DDDDDD;
+}
+
+.table-container{
+	width:100%;
+    overflow:auto;
+    display: block;
+}
+
+
+
+.a {
+	width: 30%;
+}
+
+.b {
+	width: 5%;
+}
+
+.c {
+	width: 4%;
+}
+
+.d {
+	width: 10%;
+}
+
+.pagechange {
+	width: 100%;
+	padding-top: 60px;
+	overflow: hidden;
+	
+}
+
+.pagechange .page {
+	width: 434px;
+	overflow: hidden;
+	margin: 0px auto;
+	color:#337ab7;
+}
+
+.pagechange .page .change_li,.differ_li {
+	font-size: 15px;
+	float: left;
+	border: 1px solid #DDDDDD;
+	width: 60px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+.differ_li{
+	position:relative;
+	overflow: hidden;
+	width: 190px;
+	border:none;
+	height: 32px;
+	
+}
+.inner_ul{
+	width: 10000000000000000000000px;
+}
+.inner_ul li {
+	float: left;
+	width: 37px;
+	margin-right:-1px;	
+	border: 1px solid #DDDDDD;
+	
+}
+
+.bold {
+	color: #000000 !important;
+	font-weight: 800;
+}
+
+.addgood {
+	margin:20px auto;
+	border: 1px solid #F8EEBA;
+	width: 412px;
+}
+
+.addgood .ag_title {
+	color: #8A6D3B;
+	border-bottom: 1px solid #F2E286;
+	background-color: #F8EEBA;
+	height: 32px;
+	line-height: 32px;
+	padding-left: 20px;
+}
+
+.addgood ul {
+	margin-top: 15px;
+}
+
+.addgood ul li {
+	height: 32px;
+	text-align: left;
+	line-height: 32px;
+	margin: 15px 0px;
+}
+
+.addgood ul li label {
+	height:32px;
+	line-height:32px;
+	margin: 0px 20px;
+	display: inline-block;
+	width: 70px;
+}
+
+.addgood ul li input {
+	font-size:14px;
+	line-height:28px;
+	margin: 0px 20px;
+	padding-left:10px;
+	height: 32px;
+	width: 250px;
+	border-radius: 3px;
+	border: 1px solid #DDDDDD;
+	outline: none;
+}
+.addgood ul li input:focus{
+	border-color:#79BCFF;
+	box-shadow:0px 0px 10px 1px #79BCFF;
+}
+.submit_out{
+	margin:0px auto;
+	padding-bottom:15px;
+	width:60px;
+	height:32px;
+	line-height:32px;
+}
+.addgood .submit {
+	font-size:15px;
+	width:100%;
+	height:100%;
+	color: #ffffff;
+	padding:5px 0px;
+	background-color: #5CB85C;
+	border: 1px solid #5CB85C;
+	border-radius:3px;
+}
+.addgood .submit:active{
+	background-color: #3F8F3F;
+	border-color: #3F8F3F;
+}
+.showImg{
+	height: 50px;
+	width: :30px;
+}

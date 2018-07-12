@@ -1,0 +1,98 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #333;
+}
+
+.imageMana {
+	width: 310px;
+	height: 200px;
+	overflow: hidden;
+	float: left;
+	margin: 2px 2px 0px 2px;
+}
+
+.imageMana .image {
+	display: none;
+}
+.imageMana .img{
+	width: 160px;
+	height: 90px;
+	margin: 5px 75px;
+
+}
+
+.attr {
+	width: 310px;
+	height: 500px;
+	overflow: hidden;
+	float: left;
+	margin: 2px 2px 0px 2px;
+}
+
+.attr span,.allAttr span,.imageMana span {
+	float: left;
+	margin-left: 5px;
+	width: 305px;
+	height: 30px;
+}
+
+.attr span input,.allAttr span input,.imageMana span input,.description
+	{
+	float: right;
+	width: 180px;
+	height: 20px;
+	float: right;
+	font-size: 14px;
+}
+
+.see {
+	width: 80px;
+	height: 24px;
+	text-align: center;
+	outline: #333;
+	border: 1px solid #333;
+	background: transparent;
+}
+
+.submit,.subm {
+	width: 80px;
+	height: 25px;
+	line-height: 25px;
+	margin: 0px auto;
+	background: green;
+	border: 1px solid green;
+	outline: none;
+	color: white;
+	display: block;
+}
+
+.allAttr {
+	width: 310px;
+	height: 500px;
+	overflow: hidden;
+	float: left;
+	margin: 2px 2px 0px 20px;
+}
+
+.spSpan {
+	height: 100px !important;
+}
+
+.description {
+	height: 90px !important;
+}

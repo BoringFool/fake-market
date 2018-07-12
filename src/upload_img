@@ -1,0 +1,4 @@
+需要在sprinmvc中配置multipartresolver
+1、指定@RequestParam MultipartFile file 例如：public Map<String, Object> logsUpload(@RequestParam MultipartFile file,@RequestParam(value="key") String key)参数；
+
+2、将request转化为MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest)(request);
