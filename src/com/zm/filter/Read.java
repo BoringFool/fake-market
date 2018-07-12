@@ -53,7 +53,6 @@ public class Read implements Filter {
 				+ (request.getPathInfo() == null ? "" : request.getPathInfo());
 		String temp = request.getRequestURI();
 		temp = temp.substring(request.getContextPath().length() + 1);
-		System.out.println("是否包括："+uri+";"+notCheckURLList+"=="+notCheckURLList.contains(uri));
 		return notCheckURLList.contains(uri);
 	}
 
@@ -62,8 +61,7 @@ public class Read implements Filter {
 		this.filterConfig = filterConfig;
 		redirectURL = filterConfig.getInitParameter("redirectURL");
 		sessionKey = filterConfig.getInitParameter("checkSessionKey").toLowerCase();
-		String notCheckURLListStr = filterConfig
-				.getInitParameter("notCheckURLList");
+		String notCheckURLListStr = filterConfig.getInitParameter("notCheckURLList");
 		if (notCheckURLListStr != null) {
 			System.out.println(notCheckURLListStr);
 			String[] params = notCheckURLListStr.split(",");

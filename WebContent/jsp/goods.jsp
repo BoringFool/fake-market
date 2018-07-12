@@ -42,18 +42,24 @@
 							<span class="rightAtPic">全商城实体商品通用</span>
 						</div>
 						<div class="second">
-							<span class="">价格</span> 
-							<span class="">15156</span>
+							<span class="littleUp">价格</span> 
+							<span class="littleDown">15156元</span>
 						</div>
 						<div class="third">
 							<span class="bigUp">促销价</span> 
-							<span class="bigDown">1515</span>
+							<span class="bigDown">1515</span>元
 						</div>
 					</div>
 				</div>
 				<div class="mid">
-					<div class="one">销量</div>
-					<div class="two">累计评价</div>
+					<div class="one">
+						销量
+						<span>${sessionScope.sellNumber}</span>
+					</div>
+					<div class="two">
+						累计评价
+						<span>${sessionScope.commentNumber}</span>
+					</div>
 				</div>
 			</div>
 			<div class="downHalf">

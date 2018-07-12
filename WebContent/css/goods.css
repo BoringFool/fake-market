@@ -127,6 +127,9 @@ body {
 	color: #666666;
 	font-size: 12px;font-family: Arial;
 }
+.showDetail .upHalf .content .contentDown span{
+	display: inline-block;
+}
 
 .showDetail .upHalf .content .contentDown .first {
 	
@@ -134,13 +137,11 @@ body {
 .showDetail .upHalf .content .contentDown .first .pic img{
 	width: 48px;
 	height: 16px;
-	display:inline-block;
 	position: relative;
 	left: 0;
 	top: 4px;
 }
 .showDetail .upHalf .content .contentDown .first .rightAtPic{
-	display:inline-block;
 	height:30px;
 	line-height: 20px;
 }
@@ -148,11 +149,19 @@ body {
 .showDetail .upHalf .content .contentDown .second {
 	
 }
+.showDetail .upHalf .content .contentDown .second .littleUp{
+	width: 48px;
+}
+.showDetail .upHalf .content .contentDown .second .littledown{
+	
+}
 
 .showDetail .upHalf .content .contentDown .third{
 	
 }
 .showDetail .upHalf .content .contentDown .third .bigUp{
+	width: 48px;
+	height: 16px;
 	position: relative;
 	left:0;
 	top: -10px;
@@ -162,6 +171,7 @@ body {
 	font-family: Arial;
 	font-size: 30px;
 	font-weight: bold;
+	margin-right: 5px;
 }
 
 .showDetail .mid {
