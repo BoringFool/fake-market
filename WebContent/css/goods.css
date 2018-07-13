@@ -216,8 +216,10 @@ body {
 }
 
 .showDetail .downHalf .numberIn {
-	width: 34px;
-	height: 28px;
+	width: 30px;
+	height: 24px;
+	padding: 2px;
+	line-height: 24px;
 }
 
 .showDetail .downHalf .fixChange {

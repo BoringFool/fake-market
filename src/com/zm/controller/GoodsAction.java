@@ -1,5 +1,6 @@
 package com.zm.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -44,9 +45,31 @@ public class GoodsAction {
 	/*
 	 * 缺少处理imageurl的方法，暂时只能使用一个图片地址的imageurl
 	 * */
-	public List<Goods> showquery(@RequestBody C c) {
+	public List<Goods> showquery(@RequestBody C c,HttpServletRequest req) {
 		int first = (c.getA() - 1) * 50;
+		
 		List<Goods> glist = goodsservice.limitq(first, c.getB());
+		//把数据存放到session中（goodsList）
+		if(req.getSession().getAttribute("goodsList")==null) {
+			List<Goods> sessionList=glist;
+			req.getSession().setAttribute("goodsList", sessionList);
+		}else {
+			@SuppressWarnings("unchecked")
+			List<Goods> sessionList=(List<Goods>) req.getSession().getAttribute("goodsList");
+			//删除重复元素，因为是代理类，所以得用id来判断
+			for(Goods g:glist) {
+				Iterator<Goods> it=sessionList.iterator();
+				while (it.hasNext()) {
+					Goods gg=it.next();
+					if(gg.getId()==g.getId()){
+						it.remove();
+						break;
+					}
+				}
+			}
+			sessionList.addAll(glist);
+			req.getSession().setAttribute("goodsList", sessionList);
+		}
 		return glist;
 	}
 

@@ -65,7 +65,7 @@
 			<div class="downHalf">
 					<span>数量</span>
 					<span> 
-						<input class="numberIn" type="text"/>
+						<input class="numberIn" type="text" value="1"/>
 					</span> 
 					<span class="fixChange">
 						<span class="upImg">

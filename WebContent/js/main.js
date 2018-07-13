@@ -1,6 +1,5 @@
 $(document).ready(
 		function() {
-
 			var times = 1;
 			oneuse=true;
 			/* 商品展示 */
