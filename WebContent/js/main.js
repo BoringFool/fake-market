@@ -106,6 +106,7 @@ $(document).ready(
 			/*model*/
 			function md(data) {
 				var model = "<div class=\"goods_box\">" 
+						+"<span class=\"goodshid\" hidden=\"hidden\">"+data.id+"</span>"
 						+ "<img alt=\"\" src=\""+data.imageurl+"\">" 
 						+ "<div class=\"content_box\">"
 						+ "<p>" + data.name + "</p>"
@@ -113,9 +114,19 @@ $(document).ready(
 						+ "</div>" + "</div>";
 
 				$(".goods").append(model);
-			}
-			;
+			};
 
+			function goodsjumb(){
+				$(".goods_box").click(function(){
+					var getid=$(this).find(".goodshid").text();
+					var address="http://localhost:8080/fake_market/jsp/goods.jsp?id=";
+					$(location).attr("href",address+getid);
+				});
+			}
+			
+			
+			
+			
 			
 			/* 商品展示 */
 			function show_goods() {
@@ -135,6 +146,7 @@ $(document).ready(
 						$.each(data, function(i, good) {
 							md(good);
 						});
+						goodsjumb();
 						times++;
 					},
 					error : function() {
@@ -155,6 +167,7 @@ $(document).ready(
 					$(".bottom_half").eq(2).css("display","none");
 				}
 			}
+			//用户已登陆，阻止a标签跳转登陆页面
 			$("#loginchange").click(function(){
 				if(name!=""){
 					$("#loginchange").attr("href","");

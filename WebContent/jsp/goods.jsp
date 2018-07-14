@@ -16,13 +16,14 @@
 		</div>
 		<div class="showPic">
 			<div class="bigShow">
+				<!-- 看看文档加载完后，el能不能起作用 -->
 				<img alt="" src="../image/goods_pic.jpg">
 			</div>
-			<div class="showList" style="">
+			<div class="showList">
 				<img alt="" src="../image/goods_pic.jpg"/>
 				<img alt="" src="../image/goods_pic.jpg"/>
 				<img alt="" src="../image/goods_pic.jpg"/>
-				<img alt="" src="../image/goods_pic.jpg"/>
+				<img alt="" src="../image/1625cec0-d591-4eec-9c11-079157588650.jpg"/>
 				<img alt="" src="../image/goods_pic.jpg"/>
 			</div>
 		</div>
@@ -76,7 +77,7 @@
 							<img alt="" src="../image/decrease.png">
 						</span>
 					</span>
-					<span> 件 库存15件 </span>
+					<span> 件 库存<span class="saveNumber"></span>件 </span>
 				<div class="lastBottom">
 					<p>服务承诺 正品保证 极速退款 赠运费险 七天无理由退换</p>
 				</div>

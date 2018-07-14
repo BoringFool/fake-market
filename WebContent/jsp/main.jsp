@@ -819,14 +819,14 @@ goodslist="${sessionScope.goodsList[0]}";
 
 	<div>
 		<span> 
-			<%
+			<%-- <%
 				List<Goods> g=(List<Goods>)request.getSession().getAttribute("goodsList");
 				for(Goods gg:g){
 			%>		
 					<%= gg.getDescription() %>
 			<%		
 				}
-			%>
+			%> --%>
 		</span>
 	</div>
 </body>
