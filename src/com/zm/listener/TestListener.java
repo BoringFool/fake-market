@@ -16,16 +16,16 @@ public class TestListener implements HttpSessionListener {
 	}
 
 	@Override
-	public void sessionCreated(HttpSessionEvent arg0) {
+	public void sessionCreated(HttpSessionEvent sessionevent) {
 		userNumber++;
-		arg0.getSession().setAttribute("userNumber", userNumber);
+		sessionevent.getSession().setAttribute("userNumber", userNumber);
 
 	}
 
 	@Override
-	public void sessionDestroyed(HttpSessionEvent arg0) {
+	public void sessionDestroyed(HttpSessionEvent sessionevent) {
 		userNumber--;
-		arg0.getSession().setAttribute("userNumber", userNumber);
+		sessionevent.getSession().setAttribute("userNumber", userNumber);
 
 	}
 

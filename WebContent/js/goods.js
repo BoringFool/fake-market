@@ -6,7 +6,7 @@ $(document).ready(function(){
 	
 	$(".firstOne").click(function(){
 		lengthCheck();
-		var address="http://localhost:8080/fake_market/jsp/pay.jsp?price={0}$buynumber={1}";
+		var address="http://localhost:8080/fake_market/jsp/pay.jsp?price={0}&buynumber={1}";
 		$(location).attr("href",address.placeholder($(".bigDown").text(),$(".numberIn").val()));
 	});
 	
@@ -53,8 +53,23 @@ $(document).ready(function(){
 		
 	}
 	
-	
-	
+	aa();
+	function aa(){
+		$(".secondOne").click(function(){
+			var address="http://localhost:8080/fake_market/orderlist/save?id={0}&num={1}";
+			
+			$.ajax({
+				type :"get",
+				url:address.placeholder(goodsid,$(".numberIn").val()),
+				dataType:"json",
+				contentType:"application/json;charset=utf=8",
+				success:function(data){
+					alert(1);
+				},
+				error:function(){}
+			});
+		});
+	}
 	
 	
 	

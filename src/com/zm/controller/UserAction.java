@@ -25,13 +25,7 @@ public class UserAction {
 	@Resource
 	private IUserService userservice;
 
-	public IUserService getSuerservice() {
-		return userservice;
-	}
-
-	public void setSuerservice(IUserService suerservice) {
-		this.userservice = suerservice;
-	}
+	
 
 	@RequestMapping("/register")
 	public @ResponseBody Long register(@RequestBody User u) {

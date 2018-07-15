@@ -34,6 +34,15 @@ public class OrderList {
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="order_id")
 	private Order order;
+	private int number;
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
 
 	public Order getOrder() {
 		return order;

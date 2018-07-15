@@ -24,13 +24,7 @@ public class GoodsAction {
 	@Resource
 	private IGoodsService goodsservice;
 
-	public IGoodsService getGoodsservice() {
-		return goodsservice;
-	}
-
-	public void setGoodsservice(IGoodsService goodsservice) {
-		this.goodsservice = goodsservice;
-	}
+	
 
 	@RequestMapping("query")
 	@ResponseBody

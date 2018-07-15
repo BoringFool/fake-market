@@ -23,7 +23,7 @@
 				<img alt="" src="../image/goods_pic.jpg"/>
 				<img alt="" src="../image/goods_pic.jpg"/>
 				<img alt="" src="../image/goods_pic.jpg"/>
-				<img alt="" src="../image/1625cec0-d591-4eec-9c11-079157588650.jpg"/>
+				<img alt="" src="../image/goods_pic.jpg"/>
 				<img alt="" src="../image/goods_pic.jpg"/>
 			</div>
 		</div>

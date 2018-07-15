@@ -14,11 +14,5 @@ public class OrderAction {
 	@Resource
 	private IOrderService orderservice;
 
-	public IOrderService getOrderservice() {
-		return orderservice;
-	}
-
-	public void setOrderservice(IOrderService orderservice) {
-		this.orderservice = orderservice;
-	}
+	
 }
