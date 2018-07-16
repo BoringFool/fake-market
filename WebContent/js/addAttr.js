@@ -179,10 +179,8 @@ $(document)
 						if($("#docFile")[0].files[0]){
 							var tail=$("#docFile").val().toLowerCase().split('.').splice(-1);
 							if(tail=="jpg"){
-								alert($("#docFile").val().toLowerCase().split('.').splice(-1));
 								return true;
 							}else{
-								alert($("#docFile").val().toLowerCase().split('.').splice(-1));
 								alert("必须选择图片!!!");
 								return false;
 							}

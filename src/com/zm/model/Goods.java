@@ -38,7 +38,7 @@ public class Goods {
 		this.description = description;
 	}
 
-	@ManyToMany(mappedBy="goods",fetch=FetchType.EAGER)//������ʾ��Course��һ��������ά��
+	
 	private Set<OrderList> orderlists;
 
 	public Set<OrderList> getOrderlists() {
