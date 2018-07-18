@@ -19,7 +19,7 @@ public class Test_order_update {
 		IUserService userservice=(IUserService) ctx.getBean("userservice");
 		Order o=orderservice.getById(1l);
 		User u=userservice.getById(1l);
-		o.setUser(u);
+		o.setUsers(u);
 		orderservice.upadte(o);
 		System.out.println(o.getId());
 	}

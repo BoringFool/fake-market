@@ -44,7 +44,7 @@ public class OrderListAction {
 		ol.setOrder(order);
 		String name=(String) req.getSession().getAttribute("username");
 		User u=userservice.getByName(name);
-		order.setUser(u);
+		order.setUsers(u);
 		orderservice.save(order);
 		orderlistservice.save(ol);
 		

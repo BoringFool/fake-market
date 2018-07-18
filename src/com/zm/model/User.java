@@ -17,7 +17,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false, unique = false, name = "id")
 	private long id;
-	@OneToOne(mappedBy = "users",cascade=CascadeType.ALL)
+	@OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
 	private Order order;
 
 	private String name;

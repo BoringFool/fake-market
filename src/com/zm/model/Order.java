@@ -21,54 +21,35 @@ public class Order {
 	@Id
 	@GeneratedValue
 	private long id;
-	private String name;
-	private int age;
 	@OneToOne
-	@JoinColumn(name="uid")
+	@JoinColumn(name = "uid",unique=true)
 	private User users;
-	private Integer num;
-	@OneToMany(mappedBy="order",cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE)
 	@LazyCollection(LazyCollectionOption.EXTRA)
 	private Set<OrderList> order_num;
-
-	public User getUsers() {
-		return users;
-	}
-
-	public void setUser(User users) {
-		this.users = users;
-	}
-
-	public Integer getNum() {
-		return num;
-	}
-
-	public void setNum(Integer num) {
-		this.num = num;
-	}
 
 	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public User getUsers() {
+		return users;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsers(User users) {
+		this.users = users;
 	}
 
-	public int getAge() {
-		return age;
+	public Set<OrderList> getOrder_num() {
+		return order_num;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setOrder_num(Set<OrderList> order_num) {
+		this.order_num = order_num;
 	}
 
 }

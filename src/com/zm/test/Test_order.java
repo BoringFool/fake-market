@@ -23,10 +23,7 @@ public class Test_order {
 		
 		User u=userservice.getById(1l);
 		Order o=new Order();
-		o.setAge(25);
-		o.setName("zz");
-		o.setNum(1);
-		o.setUser(u);
+		o.setUsers(u);
 		orderservice.save(o);
 		System.out.println(o.getId());
 	}

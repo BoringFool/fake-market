@@ -16,25 +16,37 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_orderlist")
+@Table(name = "t_orderlist")
 public class OrderList {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", unique = false, nullable = false)
 	private long id;
-	@ManyToMany(fetch=FetchType.EAGER)//��ManyToManyָ����Զ�Ĺ�����ϵ
-    //��Ϊ��Զ�֮���ͨ��һ���м����ά������ֱ�ӵĹ�ϵ������ͨ�� JoinTable ���ע����������name����
-    //ָ�����м������֣�JoinColumns��һ�� @JoinColumn���͵����飬��ʾ�������ⷽ�ڶԷ��е�������ƣ���
-    //����Course�������ڶԷ���������ƾ��� rid��inverseJoinColumnsҲ��һ�� @JoinColumn���͵����飬��ʾ��
-    //�ǶԷ���������е�������ƣ��Է���Teacher���������ҷ���������ƾ��� tid
-    @JoinTable(name="t_good_orderlist", joinColumns={ @JoinColumn(name="oid")}, 
-    inverseJoinColumns={ @JoinColumn(name = "gid") })
+	@ManyToMany(fetch = FetchType.EAGER) // ��ManyToManyָ����Զ�Ĺ�����ϵ
+	// ��Ϊ��Զ�֮���ͨ��һ���м����ά������ֱ�ӵĹ�ϵ������ͨ�� JoinTable
+	// ���ע����������name����
+	// ָ�����м������֣�JoinColumns��һ��
+	// @JoinColumn���͵����飬��ʾ�������ⷽ�ڶԷ��е�������ƣ���
+	// ����Course�������ڶԷ���������ƾ��� rid��inverseJoinColumnsҲ��һ��
+	// @JoinColumn���͵����飬��ʾ��
+	// �ǶԷ���������е�������ƣ��Է���Teacher���������ҷ���������ƾ��� tid
+	@JoinTable(name = "t_good_orderlist", joinColumns = { @JoinColumn(name = "oid") }, inverseJoinColumns = {
+			@JoinColumn(name = "gid") })
 	private Set<Goods> goods;
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="order_id")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "order_id")
 	private Order order;
 	private int number;
+	private boolean payState;
+
+	public boolean isPayState() {
+		return payState;
+	}
+
+	public void setPayState(boolean payState) {
+		this.payState = payState;
+	}
 
 	public int getNumber() {
 		return number;
