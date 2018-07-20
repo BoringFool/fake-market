@@ -1,6 +1,10 @@
 package com.zm.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -8,8 +12,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.SystemPropertyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.zm.model.Goods;
@@ -34,7 +40,7 @@ public class OrderListAction {
 	@Resource
 	private IOrderService orderservice;
 
-	@RequestMapping("/save")
+	@RequestMapping("/pay")
 	@ResponseBody
 	public String save(HttpServletRequest req) {
 		long id = Long.parseLong(req.getParameter("id"));
@@ -73,9 +79,6 @@ public class OrderListAction {
 					return "2";
 				} else {
 					cart.put(id, num);
-					System.out.println(keySet);
-					System.out.println(cart.values());
-					System.out.println(cart.get(id));
 					session.setAttribute("shoppingCart", cart);
 				}
 			} else {
@@ -84,5 +87,44 @@ public class OrderListAction {
 			}
 		}
 		return "1";
+	}
+	
+	
+	
+	@SuppressWarnings("rawtypes")
+	public static Map<String, String> convertRequestPrama(HttpServletRequest request) throws JSONException {
+        Map<String, String> map = new HashMap<String, String>();
+        // 读取请求内容
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new InputStreamReader(request.getInputStream(), "UTF-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String line = null;
+        StringBuilder sb = new StringBuilder();
+        try {
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // 将资料解码
+        String reqBody = sb.toString();
+
+        if (StringUtils.isEmpty(reqBody)) return null;
+
+        JSONObject jsonObject = new JSONObject(reqBody);
+
+        Iterator iterator = jsonObject.keys();
+        String key = null;
+        String value = null;
+        while (iterator.hasNext()) {
+            key = (String) iterator.next();
+            value = jsonObject.getString(key);
+            map.put(key, value);
+        }
+        return map;
 	}
 }

@@ -11,12 +11,15 @@
 <body>
 	
 	<div id="imageMana" class="imageMana">
-		<form action="<%=request.getContextPath() %>/goods/turn" method="post" id="fileUploadForm" name="fileUploadForm" enctype="multipart/form-data" >
-		<input type="file" name="docFile" id="docFile" class="image"/>
-		<input type="hidden" name="hid" id="hid"/>
-		<span><button type="button" class="see" >浏览</button><input id="newfile" name="newfile" type="text" /></span>
-		<img class="img" alt="" src="">
-		<input type="submit" name="subm" class="subm" value="上传">
+		<form action="<%=request.getContextPath()%>/goods/turn" method="post" id="fileUploadForm" name="fileUploadForm" enctype="multipart/form-data">
+			<input type="file" name="docFile" id="docFile" class="image" />
+			<input type="hidden" name="hid" id="hid" /> 
+			<span>
+				<button type="button" class="see">浏览</button>
+				<input id="newfile" name="newfile" type="text" />
+			</span> 
+			<img class="img" alt="" src=""> 
+			<input type="submit" name="subm" class="subm" value="上传">
 		</form>
 	</div>
 	
