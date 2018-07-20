@@ -53,21 +53,42 @@ $(document).ready(function(){
 		
 	}
 	
-	aa();
+	$(".secondOne").click(function(){
+		aa();
+	});
+	
+	
+	
 	function aa(){
-		$(".secondOne").click(function(){
-			var address="http://localhost:8080/fake_market/orderlist/save?id={0}&num={1}";
-			
-			$.ajax({
-				type :"get",
-				url:address.placeholder(goodsid,$(".numberIn").val()),
-				dataType:"json",
-				contentType:"application/json;charset=utf=8",
-				success:function(data){
-					alert(1);
-				},
-				error:function(){}
-			});
+		var address;
+		var argument;
+		if(arguments.length!=0){
+			argument=arguments[0];
+			if(argument){
+				address="http://localhost:8080/fake_market/orderlist/cart?id={0}&num={1}&times="+argument;
+			}
+		}else{
+			address="http://localhost:8080/fake_market/orderlist/cart?id={0}&num={1}";
+		}
+		$.ajax({
+			type :"get",
+			url:address.placeholder(goodsid,$(".numberIn").val()),
+			dataType:"json",
+			contentType:"application/json;charset=utf=8",
+			success:function(data){
+				if(data==2){
+					if(window.confirm('商品已经存在购物车是否覆盖？')){
+						aa(true); 
+		              }else{
+		                alert("没有添加！");
+		             }
+				}else if(data==1){
+					alert("商品添加成功！");
+				}
+			},
+			error:function(){
+				
+			}
 		});
 	}
 	
