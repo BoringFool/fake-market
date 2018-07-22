@@ -9,8 +9,46 @@ $(document)
 						change.goCheck();
 					});
 					
-					function Change() {
-					}
+					$(".see").click(function() {
+						change.imageview();
+					});
+					
+					//属性提交
+					$("#sub").click(function() {
+						change.ajaxSub();
+					});
+					
+					//编辑提交
+					$("#allsub").click(function() {
+						var a=$(".description").val();
+						//字数限制
+						if(a.length>255){
+							alert("字数不能超过255个！");
+						}else{
+							change.returnData();
+						}
+					});
+					
+					/*
+					 * 防止上传文件选择为空判定,限定只能传jpg
+					 * */
+					$("#fileUploadForm").on("submit",function(){
+						if($("#docFile")[0].files[0]){
+							var tail=$("#docFile").val().toLowerCase().split('.').splice(-1);
+							if(tail=="jpg"){
+								return true;
+							}else{
+								alert("必须选择图片!!!");
+								return false;
+							}
+							
+						}else{
+							alert("必须选择文件!!!");
+							return false;
+						}
+						
+					});
+					
 					
 					/*
 					 * 根据地址后缀，判断显示，并获取物品id
@@ -44,22 +82,11 @@ $(document)
 								return 0;
 							}
 						};
+	
 					
-					//属性提交
-					$("#sub").click(function() {
-						change.ajaxSub();
-					});
+					function Change() {
+					}
 					
-					//编辑提交
-					$("#allsub").click(function() {
-						var a=$(".description").val();
-						//字数限制
-						if(a.length>255){
-							alert("字数不能超过255个！");
-						}else{
-							change.returnData();
-						}
-					});
 					/*
 					 * 属性提交用
 					 */
@@ -69,10 +96,9 @@ $(document)
 							brand : $("#branda").val(),
 							size : $("#size").val(),
 							color : $("#color").val(),
-							imageurl : $("#imageurl").val(),
+							imageurl : $("#imageurl").val()
 						};
-						$
-								.ajax({
+						$.ajax({
 									type : "post",
 									url : "/fake_market/goods/addgattr",
 									data : JSON.stringify(att),
@@ -154,9 +180,6 @@ $(document)
 								});
 					};
 
-					$(".see").click(function() {
-						change.imageview();
-					});
 
 					//图片预览
 					Change.prototype.imageview = function() {
@@ -169,27 +192,4 @@ $(document)
 							$("#hid").val(goodsid);
 						});	
 					};
-					
-					
-					
-					/*
-					 * 防止上传文件选择为空判定,限定只能传jpg
-					 * */
-					$("#fileUploadForm").on("submit",function(){
-						if($("#docFile")[0].files[0]){
-							var tail=$("#docFile").val().toLowerCase().split('.').splice(-1);
-							if(tail=="jpg"){
-								return true;
-							}else{
-								alert("必须选择图片!!!");
-								return false;
-							}
-							
-						}else{
-							alert("必须选择文件!!!");
-							return false;
-						}
-						
-					});
-
 				});
