@@ -4,43 +4,43 @@ $().ready(function() {
 	 * ajax
 	 */
 	$("#submit").click(function() {
-		register();
+				register();
 
-	});
-	
+			});
+
 	/*
 	 * 调用关闭
-	 * */
+	 */
 	$("#quit").click(function() {
-		close();
-	});
+				close();
+			});
 
 	/*
-	 *注册成后显示
-	 * */
+	 * 注册成后显示
+	 */
 	function change() {
 		$(".f_s_s1").css({
-			"color" : "#b6b6b6",
-			"background-color" : "#efefef"
-		});
+					"color" : "#b6b6b6",
+					"background-color" : "#efefef"
+				});
 		$(".f_s_s2").css({
-			"color" : "#000000",
-			"background-color" : "#f9f9f9"
-		});
+					"color" : "#000000",
+					"background-color" : "#f9f9f9"
+				});
 		$("#quit").css({
-			"display" : "block"
-		});
+					"display" : "block"
+				});
 		$("#a").css({
-			"display" : "none"
-		});
+					"display" : "none"
+				});
 		$("#b").css({
-			"display" : "none"
-		});
+					"display" : "none"
+				});
 	}
 
 	/*
 	 * 关闭浏览器推出
-	 * */
+	 */
 	function close() {
 		window.opener = null;
 		window.close();
@@ -66,8 +66,10 @@ $().ready(function() {
 				if (data == 1) {
 					alert("注册成功");
 					change();
-					setTimeout(function (){
-						$(location).attr("href","http://localhost:8080/fake_market/jsp/login.jsp");
+					setTimeout(function() {
+						$(location)
+								.attr("href",
+										"http://localhost:8080/fake_market/jsp/login.jsp");
 					}, 4000);
 
 				} else {
@@ -81,8 +83,8 @@ $().ready(function() {
 
 	}
 
-	/*
-	 *差登录验证（密码不为空之类的） 
-	 */
+		/*
+		 * 差登录验证（密码不为空之类的）
+		 */
 
 });

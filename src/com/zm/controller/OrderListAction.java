@@ -3,10 +3,8 @@ package com.zm.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,7 +19,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.zm.model.Goods;
 import com.zm.model.OrderList;
 import com.zm.service.IGoodsService;
 import com.zm.service.IOrderListService;
@@ -48,36 +45,12 @@ public class OrderListAction {
 	 * 但是保存到list里面关联上的话，数量和库存冲突。不想给goods再加个属性
 	 * */
 	public String save(HttpServletRequest req,@RequestBody OrderList o) {
+		o.setPayState(false);
+		mapIt(o.getOrderNumber());
+		orderlistservice.save(o);
 		
+		req.getSession().setAttribute("orderlist", o);
 		
-		
-		Set<Goods>  s=o.getGoods();
-		System.out.println(s+"*********");
-		Iterator<Goods> it=s.iterator();
-		for(Goods gg:s) {
-			System.out.println(gg.getBrand());
-		}
-		while(it.hasNext()) {
-			Goods g=it.next();
-			System.out.println(it);
-			System.out.println("******"+g.getBrand());
-		}
-		
-		
-		/*long id = Long.parseLong(req.getParameter("id"));
-		int num = Integer.parseInt(req.getParameter("num"));
-		Order order = new Order();
-		OrderList ol = new OrderList();
-		Goods g = goodsservice.getById(id);
-		ol.setNumber(num);
-		ol.addGood(g);
-		ol.setOrder(order);
-		String name = (String) req.getSession().getAttribute("username");
-		User u = userservice.getByName(name);
-		order.setUsers(u);
-		orderservice.save(order);
-		orderlistservice.save(ol);*/
-
 		return "1";
 	}
 
@@ -108,6 +81,18 @@ public class OrderListAction {
 			}
 		}
 		return "1";
+	}
+	
+	
+	private void mapIt(Map<Long, Integer> s) {
+		
+		System.out.println(s);
+		Set<Long> ss=s.keySet();
+		Iterator<Long> it=ss.iterator();
+		while(it.hasNext()) {
+			Long l=it.next();
+			System.out.println("key :"+l+"values:"+s.get(l));
+		}
 	}
 	
 	

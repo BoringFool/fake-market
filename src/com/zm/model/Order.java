@@ -1,5 +1,6 @@
 package com.zm.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,8 +17,12 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "t_order")
-public class Order {
+public class Order implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1614358555228367804L;
 	@Id
 	@GeneratedValue
 	private long id;
