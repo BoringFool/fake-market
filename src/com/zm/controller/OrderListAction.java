@@ -3,8 +3,10 @@ package com.zm.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,12 +18,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.zm.model.Goods;
-import com.zm.model.Order;
 import com.zm.model.OrderList;
-import com.zm.model.User;
 import com.zm.service.IGoodsService;
 import com.zm.service.IOrderListService;
 import com.zm.service.IOrderService;
@@ -42,8 +43,28 @@ public class OrderListAction {
 
 	@RequestMapping("/pay")
 	@ResponseBody
-	public String save(HttpServletRequest req) {
-		long id = Long.parseLong(req.getParameter("id"));
+	/*
+	 * 直接orderlist接受，里面goods的number属性用来接受数量,
+	 * 但是保存到list里面关联上的话，数量和库存冲突。不想给goods再加个属性
+	 * */
+	public String save(HttpServletRequest req,@RequestBody OrderList o) {
+		
+		
+		
+		Set<Goods>  s=o.getGoods();
+		System.out.println(s+"*********");
+		Iterator<Goods> it=s.iterator();
+		for(Goods gg:s) {
+			System.out.println(gg.getBrand());
+		}
+		while(it.hasNext()) {
+			Goods g=it.next();
+			System.out.println(it);
+			System.out.println("******"+g.getBrand());
+		}
+		
+		
+		/*long id = Long.parseLong(req.getParameter("id"));
 		int num = Integer.parseInt(req.getParameter("num"));
 		Order order = new Order();
 		OrderList ol = new OrderList();
@@ -55,7 +76,7 @@ public class OrderListAction {
 		User u = userservice.getByName(name);
 		order.setUsers(u);
 		orderservice.save(order);
-		orderlistservice.save(ol);
+		orderlistservice.save(ol);*/
 
 		return "1";
 	}

@@ -10,6 +10,6 @@
 <script src="../js/pay.js"></script>
 </head>
 <body>
-
+	<button id="sub" type="button" >submit</button>
 </body>
 </html>
