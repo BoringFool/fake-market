@@ -125,48 +125,56 @@ body {
 	background-image: url(../image/priceBackground.png);
 	padding: 10px;
 	color: #666666;
-	font-size: 12px;font-family: Arial;
+	font-size: 12px;
+	font-family: Arial;
 }
-.showDetail .upHalf .content .contentDown span{
+
+.showDetail .upHalf .content .contentDown span {
 	display: inline-block;
 }
 
 .showDetail .upHalf .content .contentDown .first {
 	
 }
-.showDetail .upHalf .content .contentDown .first .pic img{
+
+.showDetail .upHalf .content .contentDown .first .pic img {
 	width: 48px;
 	height: 16px;
 	position: relative;
 	left: 0;
 	top: 4px;
 }
-.showDetail .upHalf .content .contentDown .first .rightAtPic{
-	height:30px;
+
+.showDetail .upHalf .content .contentDown .first .rightAtPic {
+	height: 30px;
 	line-height: 20px;
 }
 
 .showDetail .upHalf .content .contentDown .second {
 	
 }
-.showDetail .upHalf .content .contentDown .second .littleUp{
+
+.showDetail .upHalf .content .contentDown .second .littleUp {
 	width: 48px;
 }
-.showDetail .upHalf .content .contentDown .second .littledown{
+
+.showDetail .upHalf .content .contentDown .second .littledown {
 	
 }
 
-.showDetail .upHalf .content .contentDown .third{
+.showDetail .upHalf .content .contentDown .third {
 	
 }
-.showDetail .upHalf .content .contentDown .third .bigUp{
+
+.showDetail .upHalf .content .contentDown .third .bigUp {
 	width: 48px;
 	height: 16px;
 	position: relative;
-	left:0;
+	left: 0;
 	top: -10px;
 }
-.showDetail .upHalf .content .contentDown .third .bigDown{
+
+.showDetail .upHalf .content .contentDown .third .bigDown {
 	color: #c40000;
 	font-family: Arial;
 	font-size: 30px;
@@ -262,7 +270,8 @@ body {
 .showDetail .bottomButton {
 	margin: 0px 70px;
 }
-.showDetail .bottomButton .firstOne,.secondOne{
+
+.showDetail .bottomButton .firstOne, .secondOne {
 	display: inline-block;
 	margin: 0px 10px;
 	width: 180px;
@@ -274,12 +283,15 @@ body {
 	font-weight: 700;
 	font-family: arial
 }
+
 .showDetail .bottomButton .firstOne {
 	background-color: #FFEDED;
 	color: #C40000;
 }
 
-.showDetail .bottomButton  .secondOne{
+.showDetail .bottomButton  .secondOne {
 	background-color: #C40000;
 	color: #ffffff;
 }
+
+

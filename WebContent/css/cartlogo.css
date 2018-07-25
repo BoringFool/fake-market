@@ -1,0 +1,23 @@
+.cart {
+	width: 30px;
+	height: 80px;
+	border: 2px solid black;
+	float: right;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	background-color: #000000;
+	z-index: 200;
+}
+
+.cart span {
+	line-height: 21px;
+	font-size: 12px;
+	font-weight: 600;
+	width: 22px;
+	height: 64px;
+	display: inline-block;
+	text-align: center;
+	color: #ffffff;
+	margin: 8px 4px;
+}

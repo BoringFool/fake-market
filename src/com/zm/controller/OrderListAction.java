@@ -38,13 +38,12 @@ public class OrderListAction {
 	@Resource
 	private IOrderService orderservice;
 
-	@RequestMapping("/pay")
-	@ResponseBody
 	/*
-	 * 直接orderlist接受，里面goods的number属性用来接受数量,
-	 * 但是保存到list里面关联上的话，数量和库存冲突。不想给goods再加个属性
+	 * 直接OrderList接收
 	 * */
-	public String save(HttpServletRequest req,@RequestBody OrderList o) {
+	@RequestMapping("/paylist")
+	@ResponseBody
+	public String paylist(HttpServletRequest req,@RequestBody OrderList o) {
 		o.setPayState(false);
 		mapIt(o.getOrderNumber());
 		orderlistservice.save(o);

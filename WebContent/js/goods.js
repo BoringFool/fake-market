@@ -4,6 +4,7 @@ $(document).ready(function() {
 	var urlsb = url.substring(4);
 	goodsid = urlsb;
 
+	
 	$(".firstOne").click(function() {
 		lengthCheck();
 		var address = "http://localhost:8080/fake_market/jsp/pay.jsp?price={0}&buynumber={1}";
@@ -30,7 +31,6 @@ $(document).ready(function() {
 	function ajaxLoad() {
 		var Data = {
 			"id" : goodsid
-			,
 		};
 
 		$.ajax({
