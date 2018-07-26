@@ -126,7 +126,6 @@ $(document).ready(function() {
 		var c = {
 			"a" : times,
 			"b" : "50"
-			,
 		};
 
 		$.ajax({

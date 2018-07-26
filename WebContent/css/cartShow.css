@@ -1,0 +1,23 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.showHead {
+	width: 90px;
+	height: 30px;
+	border: 1px solid red;
+	text-align: center;
+	line-height: 30px;
+	letter-spacing: 4px;
+	font-size: 14px;
+	float: left;
+}

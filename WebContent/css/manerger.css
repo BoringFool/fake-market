@@ -46,6 +46,9 @@ table,th,td {
 	border: 1px solid #DDDDDD;
 }
 
+td.del,td.editor,td.setAttr,td.managerImg{
+	cursor: pointer;
+}
 .table-container{
 	width:100%;
     overflow:auto;

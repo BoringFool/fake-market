@@ -319,7 +319,6 @@ $(document).ready(function() {
 						alert(XMLHttpRequest.readyState);
 						alert(textStatus);
 					}
-					,
 				});
 	};
 
@@ -373,7 +372,6 @@ $(document).ready(function() {
 			"color" : "color",
 			"size" : "size",
 			"imageurl" : "imageurl"
-			,
 		};
 		$.ajax({
 					type : "post",
@@ -453,7 +451,6 @@ $(document).ready(function() {
 	Goods.prototype.del = function(id) {
 		var data = {
 			"id" : id
-			,
 		};
 		$.ajax({
 					type : "post",

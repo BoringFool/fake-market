@@ -82,6 +82,20 @@ public class OrderListAction {
 		return "1";
 	}
 	
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/aaa")
+	@ResponseBody
+	public Map<Long, Integer> show(HttpServletRequest req){
+		HttpSession session = req.getSession();
+		Map<Long, Integer> cart=new HashMap<>();
+		//不可以return null，会导致xml找不到根元素错误
+		if(session.getAttribute("shoppingCart")==null) {
+			cart.put(0l, 0);
+		}else {
+			cart = (HashMap<Long, Integer>) session.getAttribute("shoppingCart");
+		}
+		return cart;
+	}
 	
 	private void mapIt(Map<Long, Integer> s) {
 		
