@@ -1,7 +1,11 @@
 package com.zm.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +28,6 @@ public class GoodsAction {
 	@Resource
 	private IGoodsService goodsservice;
 
-	
-
 	@RequestMapping("query")
 	@ResponseBody
 	public List<Goods> query(@RequestBody Goods c) {
@@ -38,24 +40,24 @@ public class GoodsAction {
 	@ResponseBody
 	/*
 	 * 缺少处理imageurl的方法，暂时只能使用一个图片地址的imageurl
-	 * */
-	public List<Goods> showquery(@RequestBody C c,HttpServletRequest req) {
+	 */
+	public List<Goods> showquery(@RequestBody C c, HttpServletRequest req) {
 		int first = (c.getA() - 1) * 50;
-		
+
 		List<Goods> glist = goodsservice.limitq(first, c.getB());
-		//把数据存放到session中（goodsList）
-		if(req.getSession().getAttribute("goodsList")==null) {
-			List<Goods> sessionList=glist;
+		// 把数据存放到session中（goodsList）
+		if (req.getSession().getAttribute("goodsList") == null) {
+			List<Goods> sessionList = glist;
 			req.getSession().setAttribute("goodsList", sessionList);
-		}else {
+		} else {
 			@SuppressWarnings("unchecked")
-			List<Goods> sessionList=(List<Goods>) req.getSession().getAttribute("goodsList");
-			//删除重复元素，因为是代理类，所以得用id来判断
-			for(Goods g:glist) {
-				Iterator<Goods> it=sessionList.iterator();
+			List<Goods> sessionList = (List<Goods>) req.getSession().getAttribute("goodsList");
+			// 删除重复元素，因为是代理类，所以得用id来判断
+			for (Goods g : glist) {
+				Iterator<Goods> it = sessionList.iterator();
 				while (it.hasNext()) {
-					Goods gg=it.next();
-					if(gg.getId()==g.getId()){
+					Goods gg = it.next();
+					if (gg.getId() == g.getId()) {
 						it.remove();
 						break;
 					}
@@ -93,8 +95,8 @@ public class GoodsAction {
 	@RequestMapping("addgattr")
 	@ResponseBody
 	public String addgattr(@RequestBody Goods g) {
-		if (g.getBrand().contains("_")){
-			String fix=g.getBrand().substring(1);
+		if (g.getBrand().contains("_")) {
+			String fix = g.getBrand().substring(1);
 			g.setBrand(fix);
 			goodsservice.update(g);
 			return "1";
@@ -109,21 +111,46 @@ public class GoodsAction {
 		}
 
 	}
-	
+
 	@RequestMapping("getbyid")
 	@ResponseBody
-	public Goods  getById(@RequestBody Goods g){
+	public Goods getById(@RequestBody Goods g) {
 		return goodsservice.getById(g.getId());
 	}
-	
-	
+
 	@RequestMapping("delete")
 	@ResponseBody
-	public String  delete(@RequestBody Goods g){
+	public String delete(@RequestBody Goods g) {
 		goodsservice.delete(g.getId());
 		return "1";
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping("cartShow")
+	@ResponseBody
+	public List<String[]> show(HttpServletRequest req) {
+		List<String[]> go = new ArrayList<>();
+
+		if (req.getSession().getAttribute("shoppingCart") == null) {
+			String[] n = { "0", "0", "0", "0", "0" };
+			go.add(n);
+		} else {
+			Map<Long, Integer> shoppingCart = (HashMap<Long, Integer>) req.getSession().getAttribute("shoppingCart");
+			Set<Long> key = shoppingCart.keySet();
+			for (Long i : key) {
+				Goods g = goodsservice.getById(i);
+				String[] a = new String[5];
+				a[0] = g.getImageurl();
+				a[1] = g.getName();
+				a[2] = g.getStore();
+				a[3] = g.getPrice() + "";
+				a[4] = shoppingCart.get(i) + "";
+				go.add(a);
+			}
+		}
+
+		return go;
+	}
 
 	@RequestMapping("jsontest")
 	@ResponseBody
@@ -144,34 +171,30 @@ public class GoodsAction {
 		String b = g.getName();
 		System.out.println(b);
 		System.out.println(StringArray.stringToArray(b) + "\n输出的是数组\n");
-		System.out.println(StringArray.ArrayToString(StringArray
-				.stringToArray(b)) + "\n输出的string\n");
+		System.out.println(StringArray.ArrayToString(StringArray.stringToArray(b)) + "\n输出的string\n");
 
 		Goods ngood = new Goods();
 		ngood.setName(StringArray.ArrayToString(StringArray.stringToArray(b)));
 		return ngood;
 	}
-	
+
 	@RequestMapping("turn")
-	public String turn(HttpServletRequest request){
-		String a="docFile";
-		String b="image";
+	public String turn(HttpServletRequest request) {
+		String a = "docFile";
+		String b = "image";
 		/*
 		 * 
-		 * 不知道什么原因，直接以request为参数会报错
-		 * The method picUpdate(String, String, HttpServletRequest) in the type FileUpload
-		 *  is not applicable for the arguments (HttpServletRequest)
+		 * 不知道什么原因，直接以request为参数会报错 The method picUpdate(String, String,
+		 * HttpServletRequest) in the type FileUpload is not applicable for the
+		 * arguments (HttpServletRequest)
 		 * 
-		 * */
-		HttpServletRequest req=request;
-		String newName= FileUpload.picUpdate(a,b,req);
-		Goods g=goodsservice.getById(Integer.parseInt(req.getParameter("hid")));
-		g.setImageurl("../image/"+newName);
+		 */
+		HttpServletRequest req = request;
+		String newName = FileUpload.picUpdate(a, b, req);
+		Goods g = goodsservice.getById(Integer.parseInt(req.getParameter("hid")));
+		g.setImageurl("../image/" + newName);
 		goodsservice.update(g);
 		return "manager";
 	}
-	
-	
-	
-	
+
 }

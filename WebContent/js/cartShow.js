@@ -1,7 +1,6 @@
 $(document).ready(function() {
 			$("button#sub").click(function() {
-						alert(1);
-						cartshow.checkShow();
+						zm();
 
 					});
 
@@ -48,6 +47,24 @@ $(document).ready(function() {
 							for(var key in data){
 								alert("物品id："+ key+"物品数量："+data[key]);
 							}
+						}
+						
+							
+						
+					},
+					error:function(){}
+				})
+			}
+			
+			
+			function zm(){
+				$.ajax({
+					type:"post",
+					url:"http://localhost:8080/fake_market/goods/cartShow",
+					dataType:"json",
+					success:function(data){
+						for(var i in data){
+							alert(data[i][0]);
 						}
 						
 							
