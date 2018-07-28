@@ -29,11 +29,11 @@ body {
 .imageMana .image {
 	display: none;
 }
-.imageMana .img{
+
+.imageMana .img {
 	width: 160px;
 	height: 90px;
 	margin: 5px 75px;
-
 }
 
 .attr {
@@ -44,15 +44,15 @@ body {
 	margin: 2px 2px 0px 2px;
 }
 
-.attr span,.allAttr span,.imageMana span {
+.attr span, .allAttr span, .imageMana span {
 	float: left;
 	margin-left: 5px;
 	width: 305px;
 	height: 30px;
 }
 
-.attr span input,.allAttr span input,.imageMana span input,.description
-	{
+.attr span input, .allAttr span input, .imageMana span input,
+	.description {
 	float: right;
 	width: 180px;
 	height: 20px;
@@ -69,7 +69,7 @@ body {
 	background: transparent;
 }
 
-.submit,.subm {
+.submit, .subm {
 	width: 80px;
 	height: 25px;
 	line-height: 25px;

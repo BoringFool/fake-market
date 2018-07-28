@@ -21,3 +21,72 @@ ul {
 	font-size: 14px;
 	float: left;
 }
+
+.newList {
+	width: 1244px;
+	border: 1px solid red;
+	float: left;
+}
+
+.nullDiv {
+	text-align: center;
+	width: 1220px;
+	height: 100px;
+	line-height: 100px;
+	font-size: 18px;
+}
+
+.newList .showList {
+	width: 1220px;
+	height: 100px;
+	overflow: hidden;
+	border: 1px solid #F1F1F1;
+	margin: 10px;
+	font-size: 12px;
+}
+
+.newList .showList input {
+	display: inline-block;
+	float: left;
+	margin: 44px 4px;
+}
+
+.newList .showList .pic {
+	width: 80px;
+	height: 84px;
+	float: left;
+	padding: 8px
+}
+
+.newList .showList .pic img {
+	width: 72px;
+	height: 72px;
+}
+
+.titleM, .priceM, .numberM, .soldM, .countM, .stateM, .reviewM,
+	.logisticsM {
+	float: left;
+	height: 92px;
+	padding: 4px;
+}
+
+.soldM, .countM, .stateM, .reviewM {
+	width: 120px;
+	border-right: 1px solid #F1F1F1;
+}
+
+.newList .showList .titleM {
+	width: 300px;
+}
+
+.newList .showList .priceM {
+	width: 100px;
+}
+
+.newList .showList .numberM {
+	width: 50px;
+}
+
+.newList .showList .logisticsM {
+	width: 104px;
+}
