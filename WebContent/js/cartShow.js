@@ -1,13 +1,26 @@
 $(document).ready(function() {
+	$commonlist=$("div.commonList");
+	var cartshow = new CartShow();
+	zm("/goods/cartShow");
 	$("button#sub").click(function() {
-				cartshow.zm();
 
 			});
 
+	$("div.showHead").click(function() {
+				$("div.showHead").css("color", "");
+				this.style.cssText = "color:#FF6000";
+				if(this.id=="newList"){
+					alert(this.id);
+					zm("/goods/cartShow");
+				}else if(this.id=="notUsedList"){
+					alert(this.id);
+				}else if(this.id=="paidList"){
+					alert(this.id);
+				}
+			});
 	function CartShow() {
 	}
 
-	var cartshow = new CartShow();
 	CartShow.prototype.aj = function() {
 		var da = {
 			"orderNumber" : {
@@ -70,18 +83,26 @@ $(document).ready(function() {
 				+ "	<span>评论</span>" + "</div>" + "<div class=\"logisticsM\">"
 				+ "	<span>查看物流</span>" + "</div>" + "</div>";
 		var nullDiv = "<div class=\"nullDiv\">最近未添加商品 </div>";
+		
+		$commonlist.children().remove();
+		
+		
+		
 		if (param == false) {
-			$("div.newList").append(nullDiv);
+			$commonlist.append(nullDiv);
 		} else {
-			$("div.newList").append(model);
+			$commonlist.append(model);
 		}
 
 	}
 
-	CartShow.prototype.zm = function() {
+	function zm() {
+		var param=arguments[0];
+		
+		var adress = "http://localhost:8080/fake_market"+param;
 		$.ajax({
 					type : "post",
-					url : "http://localhost:8080/fake_market/goods/cartShow",
+					url : adress,
 					dataType : "json",
 					success : function(data) {
 
@@ -97,6 +118,6 @@ $(document).ready(function() {
 					error : function() {
 					}
 				})
-
 	}
+
 });

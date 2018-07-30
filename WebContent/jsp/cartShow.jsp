@@ -10,22 +10,15 @@
 <script src="../js/cartShow.js"></script>
 </head>
 <body>
-	<div style="width: 1254px;margin: 0px auto;border: 1px solid #BCBCBC;overflow: hidden;">
-		<div style="width: 1254px;overflow:hidden; border: 1px solid #F1F1F1;background-color: #F1F1F1">
-			<div class="showHead">新添加</div>
-			<div  class="showHead" style="color: #FF6000">未使用</div>
-			<div class="showHead">已购买</div>
+	<div class="outer">
+		<div class="outerHead">
+			<div id="newList" class="showHead" style="color: #FF6000">新添加</div>
+			<div id="notUsedList" class="showHead" >未使用</div>
+			<div id="paidList" class="showHead">已购买</div>
 		</div>
-		<div class="newList">
+		<div class="commonList">
 			
 		</div>
-		<div style="display: none;">
-			2
-		</div>
-		<div style="display: none;">
-			3
-		</div>
-	
 	</div>
 	<button id="sub" type="button" >submit</button>
 	
