@@ -1,6 +1,8 @@
 package com.zm.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,18 +25,23 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false, unique = false, name = "id")
 	private long id;
-	@OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
-	private Order order;
+	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	private Set<Order> order;
 
 	private String name;
 	private String password;
 	private String email;
 
-	public Order getOrder() {
+	public User() {
+		order=new HashSet<Order>();
+	}
+	
+
+	public Set<Order> getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(Set<Order> order) {
 		this.order = order;
 	}
 

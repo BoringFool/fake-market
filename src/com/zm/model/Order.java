@@ -1,15 +1,17 @@
 package com.zm.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
@@ -26,13 +28,18 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-	@OneToOne
-	@JoinColumn(name = "uid",unique=true)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "uid")
 	private User users;
 	@OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE)
 	@LazyCollection(LazyCollectionOption.EXTRA)
 	private Set<OrderList> order_num;
 
+	public Order() {
+		order_num=new HashSet<OrderList>();
+	}
+	
+	
 	public long getId() {
 		return id;
 	}

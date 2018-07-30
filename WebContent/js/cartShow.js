@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$commonlist=$("div.commonList");
+	$commonlist = $("div.commonList");
 	var cartshow = new CartShow();
 	zm("/goods/cartShow");
 	$("button#sub").click(function() {
@@ -9,19 +9,19 @@ $(document).ready(function() {
 	$("div.showHead").click(function() {
 				$("div.showHead").css("color", "");
 				this.style.cssText = "color:#FF6000";
-				if(this.id=="newList"){
+				if (this.id == "newList") {
 					alert(this.id);
 					zm("/goods/cartShow");
-				}else if(this.id=="notUsedList"){
+				} else if (this.id == "notUsedList") {
 					alert(this.id);
-				}else if(this.id=="paidList"){
+				} else if (this.id == "paidList") {
 					alert(this.id);
 				}
 			});
 	function CartShow() {
 	}
 
-	CartShow.prototype.aj = function() {
+	CartShow.prototype.paylist = function() {
 		var da = {
 			"orderNumber" : {
 				1 : 245,
@@ -41,9 +41,7 @@ $(document).ready(function() {
 					error : function() {
 						alert("false");
 					}
-
 				});
-
 	}
 
 	CartShow.prototype.checkShow = function() {
@@ -60,7 +58,6 @@ $(document).ready(function() {
 								alert("物品id：" + key + "物品数量：" + data[key]);
 							}
 						}
-
 					},
 					error : function() {
 					}
@@ -83,29 +80,25 @@ $(document).ready(function() {
 				+ "	<span>评论</span>" + "</div>" + "<div class=\"logisticsM\">"
 				+ "	<span>查看物流</span>" + "</div>" + "</div>";
 		var nullDiv = "<div class=\"nullDiv\">最近未添加商品 </div>";
-		
+
 		$commonlist.children().remove();
-		
-		
-		
+
 		if (param == false) {
 			$commonlist.append(nullDiv);
 		} else {
 			$commonlist.append(model);
 		}
-
 	}
 
 	function zm() {
-		var param=arguments[0];
-		
-		var adress = "http://localhost:8080/fake_market"+param;
+		var param = arguments[0];
+
+		var adress = "http://localhost:8080/fake_market" + param;
 		$.ajax({
 					type : "post",
 					url : adress,
 					dataType : "json",
 					success : function(data) {
-
 						for (var i in data) {
 							if (data[i][0] == "0" && data[i][1] == "0"
 									&& data[i][2] == "0") {
@@ -117,7 +110,7 @@ $(document).ready(function() {
 					},
 					error : function() {
 					}
-				})
+				});
 	}
 
 });
