@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "t_orderlist")
 public class OrderList implements Serializable {
@@ -24,33 +26,30 @@ public class OrderList implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", unique = false, nullable = false)
 	private long id;
-	@ManyToOne(fetch = FetchType.EAGER) 
-	@JoinColumn(name="goods_id")
-	private Goods goods;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "order_id")
+	@JoinColumn(name = "goods_id")
+	private Goods goods;
+	@ManyToOne
+	@JoinColumn(name="oid")
+	@JsonIgnoreProperties(value = { "order_num" })
 	private Order order;
-  	private boolean payState;
-  	private int number;
+	private boolean payState;
+	private int number;
 
-	public OrderList() {
-		
+	public long getId() {
+		return id;
 	}
 
-	public int getNumber() {
-		return number;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
+	public Goods getGoods() {
+		return goods;
 	}
 
-	public boolean isPayState() {
-		return payState;
-	}
-
-	public void setPayState(boolean payState) {
-		this.payState = payState;
+	public void setGoods(Goods goods) {
+		this.goods = goods;
 	}
 
 	public Order getOrder() {
@@ -61,19 +60,34 @@ public class OrderList implements Serializable {
 		this.order = order;
 	}
 
-
-	public long getId() {
-		return id;
+	public boolean isPayState() {
+		return payState;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setPayState(boolean payState) {
+		this.payState = payState;
 	}
 
-	/*存储购物id和number
-    	@ElementCollection(fetch=FetchType.LAZY) 
-    	@CollectionTable(name="NUMBER") //指定集合生成的表
- 	    @MapKeyColumn(name="GOODS_ID") //指定key生成的列
-	    private Map<Long, Integer> orderNumber;
-	*/
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	/*
+	 * 存储购物id和number
+	 * 
+	 * @ElementCollection(fetch=FetchType.LAZY)
+	 * 
+	 * @CollectionTable(name="NUMBER") //指定集合生成的表
+	 * 
+	 * @MapKeyColumn(name="GOODS_ID") //指定key生成的列 private Map<Long, Integer>
+	 * orderNumber;
+	 */
 }

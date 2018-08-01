@@ -1,5 +1,7 @@
 package com.zm.service;
 
+import java.util.List;
+
 import com.zm.model.OrderList;
 
 public interface IOrderListService {
@@ -12,4 +14,5 @@ public interface IOrderListService {
 
 	public void update(OrderList ol);
 
+	public List<OrderList> byState(boolean b);
 }

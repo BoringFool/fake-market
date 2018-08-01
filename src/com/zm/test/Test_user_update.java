@@ -14,8 +14,8 @@ public class Test_user_update {
 	public void update(){
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");
 		IUserService userservice=(IUserService) ctx.getBean("userservice");
-		User u=userservice.getById(2l);
-		u.setName("aa");
+		User u=userservice.getById(1l);
+		u.setEmail("1318593330@qq.com");
 		userservice.update(u);
 		
 		

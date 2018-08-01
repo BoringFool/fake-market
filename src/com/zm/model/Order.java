@@ -14,8 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "t_order")
@@ -28,11 +28,12 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "uid")
+	@ManyToOne
+	@JoinColumn(name="uid")
+	@JsonIgnoreProperties(value = { "order" })
 	private User users;
-	@OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE)
-	@LazyCollection(LazyCollectionOption.EXTRA)
+	@OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
+	@JsonIgnoreProperties(value = { "order" })
 	private Set<OrderList> order_num;
 
 	public Order() {

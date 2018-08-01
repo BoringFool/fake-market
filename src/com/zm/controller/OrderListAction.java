@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.zm.model.OrderList;
 import com.zm.service.IGoodsService;
@@ -45,12 +47,21 @@ public class OrderListAction {
 	@ResponseBody
 	public String paylist(HttpServletRequest req,@RequestBody OrderList o) {
 		o.setPayState(false);
-		mapIt(o.getOrderNumber());
+		o.getNumber();
 		orderlistservice.save(o);
 		
 		req.getSession().setAttribute("orderlist", o);
 		
 		return "1";
+	}
+	
+	@RequestMapping("/statelist")
+	@ResponseBody
+	public List<OrderList> list(@RequestParam("bool") Boolean b){
+		
+		System.out.println(orderlistservice.byState(b));
+		
+		return orderlistservice.byState(b);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -97,6 +108,7 @@ public class OrderListAction {
 		return cart;
 	}
 	
+	@SuppressWarnings("unused")
 	private void mapIt(Map<Long, Integer> s) {
 		
 		System.out.println(s);

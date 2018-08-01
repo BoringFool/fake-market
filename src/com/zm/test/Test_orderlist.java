@@ -27,7 +27,7 @@ public class Test_orderlist {
 		Goods g=goodsservice.getById(2l);
 		OrderList o_l=new OrderList();
 		o_l.setOrder(o);
- 		o_l.addGood(g);
+ 		o_l.setGoods(g);
 		orderlistservice.save(o_l);
 		System.out.println(o_l.getId());
 	}

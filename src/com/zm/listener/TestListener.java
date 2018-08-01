@@ -31,7 +31,7 @@ public class TestListener implements HttpSessionListener {
 
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	@Override
 	public void sessionDestroyed(HttpSessionEvent sessionevent) {
 		HttpSession session=sessionevent.getSession();

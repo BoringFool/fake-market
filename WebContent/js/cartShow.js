@@ -10,12 +10,11 @@ $(document).ready(function() {
 				$("div.showHead").css("color", "");
 				this.style.cssText = "color:#FF6000";
 				if (this.id == "newList") {
-					alert(this.id);
 					zm("/goods/cartShow");
 				} else if (this.id == "notUsedList") {
-					alert(this.id);
+					zm("/orderlist/statelist?bool=false");
 				} else if (this.id == "paidList") {
-					alert(this.id);
+					zm("/orderlist/statelist?bool=true");
 				}
 			});
 	function CartShow() {
@@ -45,7 +44,6 @@ $(document).ready(function() {
 	}
 
 	CartShow.prototype.checkShow = function() {
-		alert(2);
 		$.ajax({
 					type : "post",
 					url : "http://localhost:8080/fake_market/orderlist/aaa",
@@ -94,19 +92,28 @@ $(document).ready(function() {
 		var param = arguments[0];
 
 		var adress = "http://localhost:8080/fake_market" + param;
+		
 		$.ajax({
-					type : "post",
+					type : "get",
 					url : adress,
 					dataType : "json",
 					success : function(data) {
-						for (var i in data) {
-							if (data[i][0] == "0" && data[i][1] == "0"
-									&& data[i][2] == "0") {
-								cartshow.models(false);
-								break;
+						if (param == "/goods/cartShow") {
+							for (var i in data) {
+								if (data[i][0] == "0" && data[i][1] == "0"
+										&& data[i][2] == "0") {
+									cartshow.models(false);
+									break;
+								}
+								cartshow.models(data[i]);
 							}
-							cartshow.models(data[i]);
+
+						} else {
+							for (var i in data) {
+								alert(data[i].id);
+							}
 						}
+
 					},
 					error : function() {
 					}

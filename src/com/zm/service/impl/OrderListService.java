@@ -1,5 +1,7 @@
 package com.zm.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -46,5 +48,10 @@ public class OrderListService implements IOrderListService {
 	public void update(OrderList ol) {
 		orderlistdao.update(ol);
 		
+	}
+
+	@Override
+	public List<OrderList> byState(boolean b) {
+		return orderlistdao.getByState(b);
 	}
 }
