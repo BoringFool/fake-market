@@ -241,11 +241,15 @@ body {
 	border: 1px solid #999;
 	display: block;
 	width: 20px;
-	height: 8px;
+	height: 12px;
 	text-align: center;
-	padding-top: 4px;
+	overflow: hidden;
+	cursor: pointer;
 }
-
+.upImg img,.downImg img{
+	position: relative;
+	top:-6px;
+}
 .showDetail .downHalf .fixChange .midImg {
 	height: 4px;
 	width: 20px;
@@ -256,9 +260,10 @@ body {
 	border: 1px solid #999;
 	display: block;
 	width: 20px;
-	height: 8px;
+	height: 12px;
 	text-align: center;
-	padding-top: 4px;
+	overflow: hidden;
+	cursor: pointer;
 }
 
 .showDetail .downHalf .lastBottom p {

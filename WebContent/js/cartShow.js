@@ -64,6 +64,29 @@ $(document).ready(function() {
 
 	CartShow.prototype.models = function() {
 		var param = arguments[0];
+		if (arguments.length == 2) {
+			var param2 = arguments[1];
+			if(param2.payState){
+				pay="交易成功";
+			}else{
+				pay="未下单";
+			}
+			var model2 = "<div class=\"showList\" >"
+					+ "<input type=\"checkbox\" >" + "<div class=\"pic\">"
+					+ "	<img alt=\"\" src=\"" + param2.goods.imageurl + "\">"
+					+ "</div>" + "<div class=\"titleM\">" + "	<span>"
+					+ param2.goods.name + "</span><br/>" + "	<span>"
+					+ param2.goods.store + "</span>" + "</div>"
+					+ "<div class=\"priceM\">" + param2.goods.price + "</div>"
+					+ "<div class=\"numberM\">" + param2.number + "</div>"
+					+ "<div class=\"soldM\">" + "	<span>申请售后</span>" + "</div>"
+					+ "<div class=\"countM\">" + "	<span>" + param2.goods.price
+					* param2.number + "</span>" + "</div>"
+					+ "<div class=\"stateM\">" + "	<span>"+pay+"</span>"
+					+ "</div>" + "<div class=\"reviewM\">" + "	<span>评论</span>"
+					+ "</div>" + "<div class=\"logisticsM\">"
+					+ "	<span>查看物流</span>" + "</div>" + "</div>";
+		}
 
 		var model = "<div class=\"showList\" >" + "<input type=\"checkbox\" >"
 				+ "<div class=\"pic\">" + "	<img alt=\"\" src=\"" + param[0]
@@ -74,15 +97,18 @@ $(document).ready(function() {
 				+ "<div class=\"soldM\">" + "	<span>申请售后</span>" + "</div>"
 				+ "<div class=\"countM\">" + "	<span>" + param[3] * param[4]
 				+ "</span>" + "</div>" + "<div class=\"stateM\">"
-				+ "	<span>交易成功</span>" + "</div>" + "<div class=\"reviewM\">"
+				+ "	<span>未下单</span>" + "</div>" + "<div class=\"reviewM\">"
 				+ "	<span>评论</span>" + "</div>" + "<div class=\"logisticsM\">"
 				+ "	<span>查看物流</span>" + "</div>" + "</div>";
+
 		var nullDiv = "<div class=\"nullDiv\">最近未添加商品 </div>";
 
 		$commonlist.children().remove();
 
 		if (param == false) {
 			$commonlist.append(nullDiv);
+		} else if (param == "orderlist") {
+			$commonlist.append(model2);
 		} else {
 			$commonlist.append(model);
 		}
@@ -92,7 +118,7 @@ $(document).ready(function() {
 		var param = arguments[0];
 
 		var adress = "http://localhost:8080/fake_market" + param;
-		
+
 		$.ajax({
 					type : "get",
 					url : adress,
@@ -107,13 +133,15 @@ $(document).ready(function() {
 								}
 								cartshow.models(data[i]);
 							}
-
 						} else {
-							for (var i in data) {
-								alert(data[i].id);
+							if (data.length == 0) {
+								cartshow.models(false);
+							} else {
+								for (var i in data) {
+									cartshow.models("orderlist", data[i]);
+								}
 							}
 						}
-
 					},
 					error : function() {
 					}
