@@ -1,5 +1,6 @@
 package com.zm.controller;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -42,25 +43,25 @@ public class OrderListAction {
 
 	/*
 	 * 直接OrderList接收
-	 * */
+	 */
 	@RequestMapping("/paylist")
 	@ResponseBody
-	public String paylist(HttpServletRequest req,@RequestBody OrderList o) {
+	public String paylist(HttpServletRequest req, @RequestBody OrderList o) {
 		o.setPayState(false);
 		o.getNumber();
 		orderlistservice.save(o);
-		
+
 		req.getSession().setAttribute("orderlist", o);
-		
+
 		return "1";
 	}
-	
+
 	@RequestMapping("/statelist")
 	@ResponseBody
-	public List<OrderList> list(@RequestParam("bool") Boolean b){
-		
+	public List<OrderList> list(@RequestParam("bool") Boolean b) {
+
 		System.out.println(orderlistservice.byState(b));
-		
+
 		return orderlistservice.byState(b);
 	}
 
@@ -92,70 +93,96 @@ public class OrderListAction {
 		}
 		return "1";
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/aaa")
 	@ResponseBody
-	public Map<Long, Integer> show(HttpServletRequest req){
+	public Map<Long, Integer> show(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		Map<Long, Integer> cart=new HashMap<>();
-		//不可以return null，会导致xml找不到根元素错误
-		if(session.getAttribute("shoppingCart")==null) {
+		Map<Long, Integer> cart = new HashMap<>();
+		// 不可以return null，会导致xml找不到根元素错误
+		if (session.getAttribute("shoppingCart") == null) {
 			cart.put(0l, 0);
-		}else {
+		} else {
 			cart = (HashMap<Long, Integer>) session.getAttribute("shoppingCart");
 		}
 		return cart;
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void mapIt(Map<Long, Integer> s) {
-		
+
 		System.out.println(s);
-		Set<Long> ss=s.keySet();
-		Iterator<Long> it=ss.iterator();
-		while(it.hasNext()) {
-			Long l=it.next();
-			System.out.println("key :"+l+"values:"+s.get(l));
+		Set<Long> ss = s.keySet();
+		Iterator<Long> it = ss.iterator();
+		while (it.hasNext()) {
+			Long l = it.next();
+			System.out.println("key :" + l + "values:" + s.get(l));
 		}
 	}
-	
-	
-	
+
+	@RequestMapping("/add")
+	@ResponseBody
+	public String add(@RequestBody OrderList ol) {
+		System.out.println("in");
+		List<OrderList> olist = orderlistservice.getByGoodsId(ol.getGoods().getId());
+		if (olist.size() == 0) {
+			orderlistservice.save(ol);
+		}else if(olist.size() == 1) {
+			for (OrderList o : olist) {
+				if (o.isPayState()) {
+					orderlistservice.save(ol);
+				} else {
+					o.setNumber(ol.getNumber());
+					orderlistservice.update(o);
+				}
+			}
+		}else if(olist.size() >= 2) {
+			for (OrderList o : olist) {
+				if (!o.isPayState()) {
+					o.setNumber(ol.getNumber());
+					orderlistservice.update(o);
+				}
+			}
+		}
+		return "1";
+	}
+
 	@SuppressWarnings("rawtypes")
 	public static Map<String, String> convertRequestPrama(HttpServletRequest request) throws JSONException {
-        Map<String, String> map = new HashMap<String, String>();
-        // 读取请求内容
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new InputStreamReader(request.getInputStream(), "UTF-8"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String line = null;
-        StringBuilder sb = new StringBuilder();
-        try {
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // 将资料解码
-        String reqBody = sb.toString();
+		Map<String, String> map = new HashMap<String, String>();
+		// 读取请求内容
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new InputStreamReader(request.getInputStream(), "UTF-8"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String line = null;
+		StringBuilder sb = new StringBuilder();
+		try {
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// 将资料解码
+		String reqBody = sb.toString();
 
-        if (StringUtils.isEmpty(reqBody)) return null;
+		if (StringUtils.isEmpty(reqBody))
+			return null;
 
-        JSONObject jsonObject = new JSONObject(reqBody);
+		JSONObject jsonObject = new JSONObject(reqBody);
 
-        Iterator iterator = jsonObject.keys();
-        String key = null;
-        String value = null;
-        while (iterator.hasNext()) {
-            key = (String) iterator.next();
-            value = jsonObject.getString(key);
-            map.put(key, value);
-        }
-        return map;
+		Iterator iterator = jsonObject.keys();
+		String key = null;
+		String value = null;
+		while (iterator.hasNext()) {
+			key = (String) iterator.next();
+			value = jsonObject.getString(key);
+			map.put(key, value);
+		}
+		return map;
 	}
 }

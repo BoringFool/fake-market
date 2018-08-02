@@ -1,6 +1,7 @@
 package com.zm.dao.impl;
 
 
+
 import java.util.*;
 
 import org.hibernate.Query;
@@ -23,6 +24,19 @@ public class OrderListDao extends BaseDao<OrderList> implements IOrderListDao {
 		}
 		List<OrderList> l=q.list();
 		return l;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OrderList> byGoodsId(Long id) {
+		String hql="from OrderList ol where ol.goods.id=:ids";
+		Query q=getSession().createQuery(hql);
+		q.setString("ids", id.toString());
+		
+		List<OrderList> o= q.list();
+		return o;
+		
+		
 	}
 
 }

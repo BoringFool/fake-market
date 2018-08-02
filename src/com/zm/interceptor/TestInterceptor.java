@@ -1,5 +1,6 @@
 package com.zm.interceptor;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,7 +13,7 @@ public class TestInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		if ("GET".equalsIgnoreCase(request.getMethod())) {
-			System.out.println("get方式");
+			
 		}
 
 		String requestUri = request.getRequestURI();

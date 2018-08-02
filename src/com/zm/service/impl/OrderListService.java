@@ -1,5 +1,6 @@
 package com.zm.service.impl;
 
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -53,5 +54,11 @@ public class OrderListService implements IOrderListService {
 	@Override
 	public List<OrderList> byState(boolean b) {
 		return orderlistdao.getByState(b);
+	}
+
+	@Override
+	public List<OrderList> getByGoodsId(Long id) {
+		
+		return orderlistdao.byGoodsId(id);
 	}
 }

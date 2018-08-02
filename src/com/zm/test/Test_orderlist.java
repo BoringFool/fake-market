@@ -1,5 +1,6 @@
 package com.zm.test;
 
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -31,4 +32,5 @@ public class Test_orderlist {
 		orderlistservice.save(o_l);
 		System.out.println(o_l.getId());
 	}
+	
 }

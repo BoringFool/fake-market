@@ -1,5 +1,6 @@
 package com.zm.myuntil;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public class FileUpload {
 
+	//a上传input的id或者name，b存放文件夹名
 	public static String picUpdate(String a,String b,HttpServletRequest req){
 		// 获取支持文件上传的Request对象 MultipartHttpServletRequest
 				MultipartHttpServletRequest mtpreq = (MultipartHttpServletRequest) req;
