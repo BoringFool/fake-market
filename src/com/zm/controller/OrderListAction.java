@@ -1,6 +1,5 @@
 package com.zm.controller;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -49,8 +48,8 @@ public class OrderListAction {
 	public String paylist(HttpServletRequest req, @RequestBody OrderList o) {
 		o.setPayState(false);
 		o.getNumber();
-		orderlistservice.save(o);
-
+		String name = (String) req.getSession().getAttribute("username");
+		orderlistservice.saveContainOrder(o, name);
 		req.getSession().setAttribute("orderlist", o);
 
 		return "1";
@@ -123,27 +122,26 @@ public class OrderListAction {
 
 	@RequestMapping("/add")
 	@ResponseBody
-	public String add(@RequestBody OrderList ol) {
+	public String add(@RequestBody OrderList ol, HttpServletRequest req) {
 		System.out.println("in");
 		List<OrderList> olist = orderlistservice.getByGoodsId(ol.getGoods().getId());
+		String name = (String) req.getSession().getAttribute("username");
 		if (olist.size() == 0) {
-			orderlistservice.save(ol);
-		}else if(olist.size() == 1) {
-			for (OrderList o : olist) {
-				if (o.isPayState()) {
-					orderlistservice.save(ol);
-				} else {
-					o.setNumber(ol.getNumber());
-					orderlistservice.update(o);
-				}
-			}
-		}else if(olist.size() >= 2) {
+
+			orderlistservice.saveContainOrder(ol, name);
+		} else if (olist.size() >= 1) {
+			boolean noNull = true;
 			for (OrderList o : olist) {
 				if (!o.isPayState()) {
 					o.setNumber(ol.getNumber());
 					orderlistservice.update(o);
+					noNull = false;
 				}
 			}
+			while (!noNull) {
+				orderlistservice.saveContainOrder(ol, name);
+			}
+
 		}
 		return "1";
 	}
