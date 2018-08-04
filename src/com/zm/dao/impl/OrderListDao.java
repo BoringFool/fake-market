@@ -15,13 +15,13 @@ public class OrderListDao extends BaseDao<OrderList> implements IOrderListDao {
 
 	@SuppressWarnings("unchecked")
 	public List<OrderList> getByState(boolean b) {
-		String hql="FROM OrderList  ol WHERE ol.payState=:state";
-		Query q=getSession().createQuery(hql);
+		String hql;
 		if(b) {
-			q.setString("state", "1");
+			 hql="FROM OrderList  ol WHERE ol.order !=null";
 		}else {
-			q.setString("state", "0");
+			 hql="FROM OrderList  ol WHERE ol.order =null";
 		}
+		Query q=getSession().createQuery(hql);
 		List<OrderList> l=q.list();
 		return l;
 	}

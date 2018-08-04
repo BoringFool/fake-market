@@ -76,6 +76,7 @@ public class OrderListService implements IOrderListService {
 		User u = userdao.getByName(username);
 		Order order = new Order();
 		order.setUsers(u);
+		orderdao.add(order);
 		ol.setOrder(order);
 		orderlistdao.add(ol);
 

@@ -16,6 +16,22 @@
 			<div id="notUsedList" class="showHead" >未使用</div>
 			<div id="paidList" class="showHead">已购买</div>
 		</div>
+		<div class="titleHead">
+		    <ul style="">
+		    	<li style="width: 25px;">
+		    		<input type="checkbox" style="margin: 6px 5px;"/>
+		    	</li>
+		    	<li style="width: 96px;	">图片</li>
+		    	<li style="width: 308px;"></li>
+		    	<li style="width: 108px;">价钱</li>
+		    	<li style="width: 58px;">数量</li>
+		    	<li style="width: 129px;">售后</li>
+		    	<li style="width: 129px;">总价</li>
+		    	<li style="width: 129px;">状态</li>
+		    	<li style="width: 129px;">评论查看</li>
+		    	<li style="width: 100px;">物流查看</li>
+		    </ul>
+		</div>
 		<div class="commonList">
 			
 		</div>

@@ -48,8 +48,7 @@ public class OrderListAction {
 	public String paylist(HttpServletRequest req, @RequestBody OrderList o) {
 		o.setPayState(false);
 		o.getNumber();
-		String name = (String) req.getSession().getAttribute("username");
-		orderlistservice.saveContainOrder(o, name);
+		orderlistservice.save(o);
 		req.getSession().setAttribute("orderlist", o);
 
 		return "1";
@@ -123,25 +122,17 @@ public class OrderListAction {
 	@RequestMapping("/add")
 	@ResponseBody
 	public String add(@RequestBody OrderList ol, HttpServletRequest req) {
-		System.out.println("in");
 		List<OrderList> olist = orderlistservice.getByGoodsId(ol.getGoods().getId());
-		String name = (String) req.getSession().getAttribute("username");
 		if (olist.size() == 0) {
-
-			orderlistservice.saveContainOrder(ol, name);
+			orderlistservice.save(ol);
 		} else if (olist.size() >= 1) {
-			boolean noNull = true;
 			for (OrderList o : olist) {
-				if (!o.isPayState()) {
+				if(o.getOrder()==null) {
 					o.setNumber(ol.getNumber());
 					orderlistservice.update(o);
-					noNull = false;
+					break;
 				}
 			}
-			while (!noNull) {
-				orderlistservice.saveContainOrder(ol, name);
-			}
-
 		}
 		return "1";
 	}

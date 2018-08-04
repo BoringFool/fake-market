@@ -19,6 +19,9 @@ ul {
 
 .outerHead {
 	width: 1254px;
+	position: fixed;
+	top: 0px;
+	margin-bottom: 10px;
 	overflow: hidden;
 	background-color: #F1F1F1
 }
@@ -33,9 +36,34 @@ ul {
 	float: left;
 }
 
+.titleHead {
+	position: fixed;
+	top: 32px;
+	background-color: #ffffff;
+	width: 1254px;
+}
+
+.titleHead ul {
+	overflow: hidden;
+	width: 1220px;
+	margin: 0px auto;
+	border: 1px solid #F1F1F1;
+}
+
+.titleHead ul li {
+	height: 30px;
+	float: left;
+	line-height: 28px;
+	text-align: left;
+	padding: 0px auto;
+	font-size: 14px;
+	font-weight: 300;
+}
+
 .commonList {
 	width: 1254px;
 	float: left;
+	margin-top: 62px;
 }
 
 .nullDiv {
@@ -48,7 +76,7 @@ ul {
 
 .commonList .showList {
 	width: 1220px;
-	height: 100px;
+	height: 95px;
 	overflow: hidden;
 	border: 1px solid #F1F1F1;
 	margin: 10px auto;
@@ -56,9 +84,8 @@ ul {
 }
 
 .commonList .showList input {
-	display: inline-block;
 	float: left;
-	margin: 44px 4px;
+	margin: 39px 4px;
 }
 
 .commonList .showList .pic {

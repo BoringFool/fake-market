@@ -103,7 +103,7 @@ $(document).ready(function() {
 
 		var nullDiv = "<div class=\"nullDiv\">最近未添加商品 </div>";
 
-		$commonlist.children().remove();
+		
 
 		if (param == false) {
 			$commonlist.append(nullDiv);
@@ -124,6 +124,7 @@ $(document).ready(function() {
 					url : adress,
 					dataType : "json",
 					success : function(data) {
+						$commonlist.children().remove();
 						if (param == "/goods/cartShow") {
 							for (var i in data) {
 								if (data[i][0] == "0" && data[i][1] == "0"
