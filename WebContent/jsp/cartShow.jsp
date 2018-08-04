@@ -19,7 +19,7 @@
 		<div class="titleHead">
 		    <ul style="">
 		    	<li style="width: 25px;">
-		    		<input type="checkbox" style="margin: 6px 5px;"/>
+		    		<input id="allChecked" type="checkbox" style="margin: 6px 5px;"/>
 		    	</li>
 		    	<li style="width: 96px;	">图片</li>
 		    	<li style="width: 308px;"></li>
@@ -35,8 +35,10 @@
 		<div class="commonList">
 			
 		</div>
+		
+		<button id="sub" type="button" class="toPay">结算</button>
 	</div>
-	<button id="sub" type="button" >submit</button>
+	
 	
 </body>
 </html>

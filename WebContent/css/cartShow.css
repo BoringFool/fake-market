@@ -127,3 +127,23 @@ ul {
 .commonList .showList .logisticsM {
 	width: 104px;
 }
+
+.toPay {
+	width: 80px;
+	height: 44px;
+	color: #ffffff;
+	letter-spacing: 5px;
+	background-color: #00b55a;
+	text-align: center;
+	line-height: 40px;
+	font-size: 16px;
+	font-weight: 700;
+	font-family: arial;
+	border: solid #00b55a;
+	position: relative;
+	left: 1158px;
+}
+
+.toPay:hover {
+	
+}
