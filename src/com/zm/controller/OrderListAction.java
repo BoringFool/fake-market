@@ -3,6 +3,7 @@ package com.zm.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -45,13 +46,15 @@ public class OrderListAction {
 	 */
 	@RequestMapping("/paylist")
 	@ResponseBody
-	public String paylist(HttpServletRequest req, @RequestBody OrderList o) {
-		o.setPayState(false);
-		o.getNumber();
-		orderlistservice.save(o);
-		req.getSession().setAttribute("orderlist", o);
-
+	public String paylist(HttpServletRequest req, @RequestBody long[] o) {
+		System.out.println(Arrays.toString(o) +"***"+o[0]);
+		
+		boolean b=orderlistservice.saveContainOrder(o, (String)req.getSession().getAttribute("username"));
+		if(b) {
 		return "1";
+		}else {
+			return "0";
+		}
 	}
 
 	@RequestMapping("/statelist")

@@ -1,5 +1,7 @@
 package com.zm.service.impl;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -53,6 +55,11 @@ public class OrderListService implements IOrderListService {
 		return orderlistdao.getById(l);
 
 	}
+	
+	public List<OrderList> getByIds(long[] ids) {
+		return orderlistdao.getByIds(ids);
+
+	}
 
 	@Override
 	public void update(OrderList ol) {
@@ -72,14 +79,22 @@ public class OrderListService implements IOrderListService {
 	}
 
 	@Override
-	public boolean saveContainOrder(OrderList ol, String username) {
+	public boolean saveContainOrder(long[] ids, String username) {
 		User u = userdao.getByName(username);
 		Order order = new Order();
 		order.setUsers(u);
 		orderdao.add(order);
-		ol.setOrder(order);
-		orderlistdao.add(ol);
-
+		System.out.println(order.getUsers()+"**********");
+		System.out.println("*****"+Arrays.toString(ids)+"****");
+		List<OrderList> ol=orderlistdao.getByIds(ids);
+		System.out.println("*****"+ol+"****");
+		Iterator<OrderList> it=ol.iterator();
+		while(it.hasNext()) {
+			OrderList oList=it.next();
+			oList.setOrder(order);
+			orderlistdao.add(oList);
+			System.out.println("**********"+oList);
+		}
 		return true;
 	}
 }

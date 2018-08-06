@@ -14,13 +14,27 @@ $(document).ready(function() {
 			});
 	//结算
 	$("button#sub").click(function() {
-		var data={};
+		var dataA=[];
+		
 		$("input[name='choose']").each(function(){
 			if($(this).is(":checked")){
 				//拿到数据
+				var a=$(this).parent().find("input[name='orderListId']").val();
+				dataA.push(a);
 			}
 		});
-		ajax
+		
+		$.ajax({
+			type:"post",
+			url:"http://localhost:8080/fake_market/orderlist/paylist",
+			data:JSON.stringify(dataA),
+			contentType:"application/json;charset=utf-8",
+			dataType:"json",
+			success:function(data){
+				alert(data);
+			},
+			error:function(){}
+		});
 			});
 	// 默认非全选
 	$("input#allChecked").prop("checked", false);
@@ -113,6 +127,7 @@ $(document).ready(function() {
 			}
 			var model2 = "<div class=\"showList\" >"
 					+ "<input type=\"checkbox\" name=\"choose\" >"
+					+ "<input name=\"orderListId\" type=\"hidden\" value=\""+param2.id+"\"/>"
 					+ "<div class=\"pic\">" + "	<img alt=\"\" src=\""
 					+ param2.goods.imageurl + "\">" + "</div>"
 					+ "<div class=\"titleM\">" + "	<span>" + param2.goods.name

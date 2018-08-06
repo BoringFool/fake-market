@@ -11,6 +11,8 @@ public interface IOrderListService {
 	public void delete(long l);
 
 	public OrderList getById(long l);
+	
+	public List<OrderList> getByIds(long[] ids);
 
 	public void update(OrderList ol);
 
@@ -18,5 +20,5 @@ public interface IOrderListService {
 
 	public List<OrderList> getByGoodsId(Long id);
 
-	public boolean saveContainOrder(OrderList ol, String username);
+	public boolean saveContainOrder(long[] ids , String username);
 }
