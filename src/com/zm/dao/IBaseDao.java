@@ -14,5 +14,5 @@ public interface IBaseDao<T> {
 
 	public T getById(long id);
 
-	public List<T> getByIds(long[] ids);
+	public List<T> getByIds(Long[] ids);
 }

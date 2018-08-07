@@ -9,8 +9,8 @@ public interface IUserService {
 	public void delet(User u);
 	public void update(User u);
 	public List<User> findall();
-	public List<User> getByids(long[] ids);
+	public List<User> getByids(Long[] ids);
 	public User getByName(String name);
 	public void tex();
-	public User getById(long l);
+	public User getById(Long l);
 }

@@ -64,10 +64,10 @@ public class BaseDao<T> implements IBaseDao<T> {
 	}
 
 	@Override
-	public List<T> getByIds(long[] ids) {
+	public List<T> getByIds(Long[] ids) {
 		String hql = "FROM " + clazz.getSimpleName() + " WHERE ID in(:ids)";
 		Query q = getSession().createQuery(hql);
-		q.setParameter("ids", ids);
+		q.setParameterList("ids", ids);
 		return q.list();
 	}
 

@@ -46,7 +46,7 @@ public class OrderListAction {
 	 */
 	@RequestMapping("/paylist")
 	@ResponseBody
-	public String paylist(HttpServletRequest req, @RequestBody long[] o) {
+	public String paylist(HttpServletRequest req, @RequestBody Long[] o) {
 		System.out.println(Arrays.toString(o) +"***"+o[0]);
 		
 		boolean b=orderlistservice.saveContainOrder(o, (String)req.getSession().getAttribute("username"));

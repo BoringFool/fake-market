@@ -27,10 +27,10 @@ public class UserService implements IUserService {
 	}
 
 	public String save(User u) {
-		User user=userdao.getByName(u.getName());
-		if(user!=null){
+		User user = userdao.getByName(u.getName());
+		if (user != null) {
 			return "�û��Ѵ��ڣ�����";
-		}else{
+		} else {
 			userdao.add(u);
 			return "����ɹ�������";
 		}
@@ -48,21 +48,21 @@ public class UserService implements IUserService {
 		return userdao.findall();
 	}
 
-
-	public List<User> getByids(long[] ids) {
+	public List<User> getByids(Long[] ids) {
 		return userdao.getByIds(ids);
 	}
+
 	public User getByName(String name) {
 		return userdao.getByName(name);
 	}
-	
-	public void tex(){
+
+	public void tex() {
 		userdao.connect_ineer();
 	}
 
 	@Override
-	public User getById(long l) {
-		
+	public User getById(Long l) {
+
 		return userdao.getById(l);
 	}
 

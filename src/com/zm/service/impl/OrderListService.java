@@ -55,8 +55,8 @@ public class OrderListService implements IOrderListService {
 		return orderlistdao.getById(l);
 
 	}
-	
-	public List<OrderList> getByIds(long[] ids) {
+
+	public List<OrderList> getByIds(Long[] ids) {
 		return orderlistdao.getByIds(ids);
 
 	}
@@ -79,21 +79,21 @@ public class OrderListService implements IOrderListService {
 	}
 
 	@Override
-	public boolean saveContainOrder(long[] ids, String username) {
+	public boolean saveContainOrder(Long[] ids, String username) {
 		User u = userdao.getByName(username);
 		Order order = new Order();
 		order.setUsers(u);
 		orderdao.add(order);
-		System.out.println(order.getUsers()+"**********");
-		System.out.println("*****"+Arrays.toString(ids)+"****");
-		List<OrderList> ol=orderlistdao.getByIds(ids);
-		System.out.println("*****"+ol+"****");
-		Iterator<OrderList> it=ol.iterator();
-		while(it.hasNext()) {
-			OrderList oList=it.next();
+		System.out.println(order.getUsers() + "**********");
+		System.out.println("*****" + Arrays.toString(ids) + "****");
+		List<OrderList> ol = orderlistdao.getByIds(ids);
+		System.out.println("*****" + ol + "****");
+		Iterator<OrderList> it = ol.iterator();
+		while (it.hasNext()) {
+			OrderList oList = it.next();
 			oList.setOrder(order);
 			orderlistdao.add(oList);
-			System.out.println("**********"+oList);
+			System.out.println("**********" + oList);
 		}
 		return true;
 	}
