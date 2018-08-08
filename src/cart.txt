@@ -1,3 +1,0 @@
-showpage   --click-->goodsshow page--click--立即购买-- (id,number)-->  paypage ------------------------------------click(结算)--生成结算传递到后台paylist 同时跳转-->结算页面--成功--后台把paylist的支付状态改为true--在orderaction里面--保存-->结束
-                                   --click--加入购物车-->后台session保存                          当进入购物车页面--后台获取展示--click --结算 ^
-                                                         

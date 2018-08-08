@@ -128,6 +128,7 @@ public class GoodsAction {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("cartShow")
 	@ResponseBody
+	//session做差了的后果，需要用这个方法来查询
 	public List<String[]> show(HttpServletRequest req) {
 		List<String[]> go = new ArrayList<>();
 

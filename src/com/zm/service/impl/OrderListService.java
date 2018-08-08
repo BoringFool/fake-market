@@ -1,8 +1,7 @@
 package com.zm.service.impl;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import javax.annotation.Resource;
 
@@ -79,21 +78,34 @@ public class OrderListService implements IOrderListService {
 	}
 
 	@Override
+	//结算方法，能重复购买，但是不能改变购买数量，因为我没有做
 	public boolean saveContainOrder(Long[] ids, String username) {
 		User u = userdao.getByName(username);
 		Order order = new Order();
 		order.setUsers(u);
 		orderdao.add(order);
-		System.out.println(order.getUsers() + "**********");
-		System.out.println("*****" + Arrays.toString(ids) + "****");
 		List<OrderList> ol = orderlistdao.getByIds(ids);
-		System.out.println("*****" + ol + "****");
 		Iterator<OrderList> it = ol.iterator();
 		while (it.hasNext()) {
 			OrderList oList = it.next();
-			oList.setOrder(order);
-			orderlistdao.add(oList);
-			System.out.println("**********" + oList);
+			Calendar c = Calendar.getInstance();
+			SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String payData = s.format(c.getTime());
+			// 再次购买相同产品，不做判断，数据库会直接覆盖oId，order会增加，但是orderList不会生成新的记录
+			if (oList.getOrder() == null) {
+				oList.setPayState(true);
+				oList.setPayData(payData);
+				oList.setOrder(order);
+				orderlistdao.update(oList);
+			} else {
+				OrderList orderlN = new OrderList();
+				orderlN.setPayState(true);
+				orderlN.setPayData(payData);
+				orderlN.setOrder(order);
+				orderlN.setNumber(oList.getNumber());
+				orderlN.setGoods(oList.getGoods());
+				orderlistdao.add(orderlN);
+			}
 		}
 		return true;
 	}

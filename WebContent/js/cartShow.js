@@ -12,29 +12,9 @@ $(document).ready(function() {
 				this.style.border = "";
 				this.style.background = "";
 			});
-	//结算
+	// 结算 新添加模块没有实现结算
 	$("button#sub").click(function() {
-		var dataA=[];
-		
-		$("input[name='choose']").each(function(){
-			if($(this).is(":checked")){
-				//拿到数据
-				var a=$(this).parent().find("input[name='orderListId']").val();
-				dataA.push(a);
-			}
-		});
-		
-		$.ajax({
-			type:"post",
-			url:"http://localhost:8080/fake_market/orderlist/paylist",
-			data:JSON.stringify(dataA),
-			contentType:"application/json;charset=utf-8",
-			dataType:"json",
-			success:function(data){
-				alert(data);
-			},
-			error:function(){}
-		});
+				cartshow.paylist();
 			});
 	// 默认非全选
 	$("input#allChecked").prop("checked", false);
@@ -73,29 +53,35 @@ $(document).ready(function() {
 	}
 
 	CartShow.prototype.paylist = function() {
-		var da = {
-			"orderNumber" : {
-				1 : 245,
-				2 : 24
+		var dataA = [];
+		var priceCount = 0;
+		$("input[name='choose']").each(function() {
+			if ($(this).is(":checked")) {
+				// 拿到数据
+				var id = $(this).parent().find("input[name='orderListId']")
+						.val();
+				dataA.push(id);
+				var M = $(this).parent().find("div.countM span").text();
+				priceCount = priceCount + parseInt(M);
 			}
-		};
-
-		$.ajax({
-					type : "post",
-					url : "http://localhost:8080/fake_market/orderlist/paylist",
-					data : JSON.stringify(da),
-					contentType : "application/json;charset=utf-8",
-					dataType : "json",
-					success : function(data) {
-						alert(data);
-					},
-					error : function() {
-						alert("false");
-					}
-				});
+		});
+		if (window.confirm("支付" + priceCount + "？")) {
+			$.ajax({
+						type : "post",
+						url : "http://localhost:8080/fake_market/orderlist/paylist",
+						data : JSON.stringify(dataA),
+						contentType : "application/json;charset=utf-8",
+						dataType : "json",
+						success : function(data) {
+							alert(1);
+						},
+						error : function() {
+						}
+					});
+		}
 	}
 
-	// 购物车查询添加
+	// 查询session中的cart信息，返回值是map(未使用)
 	CartShow.prototype.checkShow = function() {
 		$.ajax({
 					type : "post",
@@ -115,27 +101,27 @@ $(document).ready(function() {
 				})
 	}
 
-	// 查询数据显示
+	// 查询数据显示拼接html
 	CartShow.prototype.models = function() {
 		var param = arguments[0];
 		if (arguments.length == 2) {
 			var param2 = arguments[1];
 			if (param2.payState) {
-				pay = "交易成功";
+				var pay = "交易成功";
 			} else {
-				pay = "未下单";
+				var pay = "未下单";
 			}
 			var model2 = "<div class=\"showList\" >"
 					+ "<input type=\"checkbox\" name=\"choose\" >"
-					+ "<input name=\"orderListId\" type=\"hidden\" value=\""+param2.id+"\"/>"
-					+ "<div class=\"pic\">" + "	<img alt=\"\" src=\""
-					+ param2.goods.imageurl + "\">" + "</div>"
-					+ "<div class=\"titleM\">" + "	<span>" + param2.goods.name
-					+ "</span><br/>" + "	<span>" + param2.goods.store
-					+ "</span>" + "</div>" + "<div class=\"priceM\">"
-					+ param2.goods.price + "</div>" + "<div class=\"numberM\">"
-					+ param2.number + "</div>" + "<div class=\"soldM\">"
-					+ "	<span>申请售后</span>" + "</div>"
+					+ "<input name=\"orderListId\" type=\"hidden\" value=\""
+					+ param2.id + "\"/>" + "<div class=\"pic\">"
+					+ "	<img alt=\"\" src=\"" + param2.goods.imageurl + "\">"
+					+ "</div>" + "<div class=\"titleM\">" + "	<span>"
+					+ param2.goods.name + "</span><br/>" + "	<span>"
+					+ param2.goods.store + "</span>" + "</div>"
+					+ "<div class=\"priceM\">" + param2.goods.price + "</div>"
+					+ "<div class=\"numberM\">" + param2.number + "</div>"
+					+ "<div class=\"soldM\">" + "	<span>申请售后</span>" + "</div>"
 					+ "<div class=\"countM\">" + "	<span>" + param2.goods.price
 					* param2.number + "</span>" + "</div>"
 					+ "<div class=\"stateM\">" + "	<span>" + pay + "</span>"
@@ -169,7 +155,7 @@ $(document).ready(function() {
 		}
 	}
 
-	// 数据查询
+	// 购物车数据查询
 	function zm() {
 		var param = arguments[0];
 

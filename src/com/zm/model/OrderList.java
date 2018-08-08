@@ -30,11 +30,20 @@ public class OrderList implements Serializable {
 	@JoinColumn(name = "goods_id")
 	private Goods goods;
 	@ManyToOne
-	@JoinColumn(name="oid")
+	@JoinColumn(name = "oid")
 	@JsonIgnoreProperties(value = { "order_num" })
 	private Order order;
 	private boolean payState;
 	private int number;
+	private String payData;
+
+	public String getPayData() {
+		return payData;
+	}
+
+	public void setPayData(String payData) {
+		this.payData = payData;
+	}
 
 	public long getId() {
 		return id;

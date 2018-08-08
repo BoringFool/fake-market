@@ -29,10 +29,10 @@ public class UserService implements IUserService {
 	public String save(User u) {
 		User user = userdao.getByName(u.getName());
 		if (user != null) {
-			return "�û��Ѵ��ڣ�����";
+			return "用户已存在";
 		} else {
 			userdao.add(u);
-			return "����ɹ�������";
+			return "用户添加成功";
 		}
 	}
 

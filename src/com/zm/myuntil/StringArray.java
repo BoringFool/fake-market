@@ -2,12 +2,17 @@ package com.zm.myuntil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-
+/*
+ * 在Json传数组的时候，走差了，出了这个类来转化数组和string
+ * 
+ * */
 public class StringArray {
 
 	/* 可以直接用jsonarray来实现 */
 	public static String[] turn(String s) {
+		//去数组两边[]
 		s = s.substring(1, s.length() - 1);
+		//按，切割
 		String[] ss = s.split(",");
 		for (int i = 0; i < ss.length; i++) {
 			ss[i] = ss[i].replace("\"", "");
