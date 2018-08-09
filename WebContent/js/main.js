@@ -33,6 +33,11 @@ $(document).ready(function() {
 				$(this).css("display", "none");
 			});
 
+			
+	$("input.form_submit").click(function(){
+		varinputData=$("input.form_input").val();
+	});
+			
 	/* 滚动首页ad */
 	function turn(i) {
 		if (i == 0) {

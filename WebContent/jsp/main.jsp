@@ -38,10 +38,8 @@ goodslist="${sessionScope.goodsList[0]}";
 		</div>
 		<div class="search_right">
 			<div class="search_form">
-				<form action="#" method="post">
 					<input type="text" class="form_input">
 					<input type="submit" class="form_submit" value="搜索">
-				</form>
 			</div>
 			<ul class="show_item">
 				<li style="margin-left: -10px;">针织衫</li>

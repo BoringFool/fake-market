@@ -108,8 +108,10 @@ $(document).ready(function() {
 			var param2 = arguments[1];
 			if (param2.payState) {
 				var pay = "交易成功";
+				var payData=param2.payData;
 			} else {
 				var pay = "未下单";
+				var payData="";
 			}
 			var model2 = "<div class=\"showList\" >"
 					+ "<input type=\"checkbox\" name=\"choose\" >"
@@ -124,7 +126,8 @@ $(document).ready(function() {
 					+ "<div class=\"soldM\">" + "	<span>申请售后</span>" + "</div>"
 					+ "<div class=\"countM\">" + "	<span>" + param2.goods.price
 					* param2.number + "</span>" + "</div>"
-					+ "<div class=\"stateM\">" + "	<span>" + pay + "</span>"
+					+ "<div class=\"stateM\">" + "	<span>" + pay + "</span></br>"
+					+"<span>"+payData+"</span>"
 					+ "</div>" + "<div class=\"reviewM\">" + "	<span>评论</span>"
 					+ "</div>" + "<div class=\"logisticsM\">"
 					+ "	<span>查看物流</span>" + "</div>" + "</div>";
