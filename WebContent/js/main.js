@@ -37,7 +37,24 @@ $(document).ready(function() {
 	$("input.form_submit").click(function(){
 		varinputData=$("input.form_input").val();
 	});
-			
+	//跳转cart页面
+	$("a#orderlist").click(function(){
+		window.location.href="http://localhost:8080/fake_market/jsp/cartShow.jsp";
+	});
+	//本来准备做实施刷新的，但购物页面是本页跳转，就没有做了	
+	onTime();
+	function onTime(){
+		$.ajax({
+			type:"get",
+			url:"http://localhost:8080/fake_market/orderlist/countcartn",
+			dataType:"json",
+			success:function(data){
+				$("span#numberOfcart").text(data);
+			},
+			error:function(){}
+		});
+	}
+	
 	/* 滚动首页ad */
 	function turn(i) {
 		if (i == 0) {

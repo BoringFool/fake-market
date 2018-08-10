@@ -55,6 +55,12 @@ public class OrderListAction {
 			return "0";
 		}
 	}
+	
+	@RequestMapping("countcartn")
+	@ResponseBody
+	public long countCartN() {
+		return orderlistservice.count();
+	}
 
 	@RequestMapping("/statelist")
 	@ResponseBody

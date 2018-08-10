@@ -78,7 +78,7 @@ public class OrderListService implements IOrderListService {
 	}
 
 	@Override
-	//结算方法，能重复购买，但是不能改变购买数量，因为我没有做
+	// 结算方法，能重复购买，但是不能改变购买数量，因为我没有做
 	public boolean saveContainOrder(Long[] ids, String username) {
 		User u = userdao.getByName(username);
 		Order order = new Order();
@@ -108,5 +108,9 @@ public class OrderListService implements IOrderListService {
 			}
 		}
 		return true;
+	}
+
+	public long count() {
+		return orderlistdao.countCart();
 	}
 }
