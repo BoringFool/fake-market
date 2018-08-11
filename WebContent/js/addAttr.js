@@ -54,6 +54,7 @@ $(document).ready(function() {
 	 */
 	function judge() {
 		var url = window.location.search;
+		//去除？号
 		var urlsb = url.substring(1);
 		var urlcutF = urlsb.split("&");
 		var urlcutS_f = urlcutF[0].split("=");

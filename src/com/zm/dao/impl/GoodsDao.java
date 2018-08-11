@@ -37,5 +37,13 @@ public class GoodsDao extends BaseDao<Goods> implements IGoodsDao {
 			return null;
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Goods> likeAndLimit(String what,int start,int number){
+		String hql="from Goods as g where g.name like :zm";
+		Query q=getSession().createQuery(hql);
+		q.setString("zm","%"+ what+"%");
+		return (List<Goods>) q.setFirstResult(start).setMaxResults(number).list();
+	}
 
 }

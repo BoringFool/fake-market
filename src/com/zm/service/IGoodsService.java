@@ -14,10 +14,12 @@ public interface IGoodsService {
 
 	public void delete(long l);
 
-	public List<Goods> limitq(int num,int length);
+	public List<Goods> limitq(int num, int length);
 
 	public long count();
+
 	public Goods getByName(String name);
 
+	public List<Goods> likeAndLimit(String what, int start, int number);
 
 }

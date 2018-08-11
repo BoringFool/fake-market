@@ -25,7 +25,7 @@ goodslist="${sessionScope.goodsList[0]}";
 			<li class="top_half"><a href="register.jsp">免费注册</a></li>
 
 			<li class="bottom_half"><a id="orderlist">我的订单</a></li>
-			<li class="bottom_half"><a href="#">购物车<span id="numberOfcart" style="color: red;font-size: 14px;margin: 0px 2px;">0</span>件</a></li>
+			<li class="bottom_half"><a id="cart">购物车<span id="numberOfcart" style="color: red;font-size: 14px;margin: 0px 2px;">0</span>件</a></li>
 			<li class="bottom_half"><a href="manager.jsp" target="_blank">后台管理</a></li>
 			
 		</ul>

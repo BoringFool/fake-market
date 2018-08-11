@@ -76,7 +76,7 @@ $().ready(function() {
 							$(location)
 									.attr("href",
 											"http://localhost:8080/fake_market/jsp/login.jsp");
-						}, 4000);
+						}, 2000);
 
 					} else {
 						alert("用户已存在");

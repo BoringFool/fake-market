@@ -35,13 +35,29 @@ $(document).ready(function() {
 
 			
 	$("input.form_submit").click(function(){
-		varinputData=$("input.form_input").val();
+		var inputData=$("input.form_input").val();
+		
+		$.ajax({
+			type:"post",
+			url:"",
+			data:JSON.stringify(),
+			contennType:"application/json;charset=utf-8",
+			dataType:"json",
+			success:function(){},
+			error:function(){}
+		});
 	});
+	
 	//跳转cart页面
 	$("a#orderlist").click(function(){
 		window.location.href="http://localhost:8080/fake_market/jsp/cartShow.jsp";
 	});
-	//本来准备做实施刷新的，但购物页面是本页跳转，就没有做了	
+	
+	$("a#cart").click(function(){
+		window.location.href="http://localhost:8080/fake_market/jsp/cartShow.jsp?div=cart";
+	});
+	
+	//本来准备做实时刷新的，但购物的goods页面是本页跳转，就没有做了	
 	onTime();
 	function onTime(){
 		$.ajax({

@@ -70,5 +70,8 @@ public class GoodsService implements IGoodsService {
 		return goodsdao.getByName(name);
 	}
 	
-	
+	public List<Goods> likeAndLimit(String what,int start,int number){
+		return goodsdao.likeAndLimit(what, start, number);
+		
+	}
 }

@@ -1,5 +1,7 @@
 package com.zm.test;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -25,5 +27,14 @@ public class Test_goods {
 		g.setStore("LuLuStore");
 		String mess=goodsservice.save(g);
 		System.out.println(mess);
+	}
+	
+	@SuppressWarnings("resource")
+	@Test
+	public void test_like() {
+		ApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");
+		IGoodsService goodsservice=(IGoodsService) ctx.getBean("goodsservice");
+		List<Goods>gl=goodsservice.likeAndLimit("asd", 1, 1);
+		System.out.println(gl);
 	}
 }

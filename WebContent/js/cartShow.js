@@ -3,6 +3,17 @@ $(document).ready(function() {
 
 	var cartshow = new CartShow();
 	zm("/goods/cartShow");
+	var urlS = window.location.search;
+	// 跳转是否带参 判断
+	if (urlS.length > 0) {
+		var urlN = urlS.substring(5);
+		if (urlN == "cart") {
+			$("div.showHead").css("color", "");
+			$("div#notUsedList").css("color", "#FF6000");
+			zm("/orderlist/statelist?bool=false");
+		}
+	}
+
 	// button样式改变
 	$("button#sub").mousedown(function() {
 				this.style.border = "#00d936";
@@ -35,7 +46,7 @@ $(document).ready(function() {
 				}
 			});
 	// 三个不同div查询切换
-	$("div.showHead").click(function() {
+	$("div.showHead").on("click", function() {
 				$("div.showHead").css("color", "");
 				$("input#allChecked").prop("checked", false);
 				this.style.cssText = "color:#FF6000";
@@ -108,10 +119,10 @@ $(document).ready(function() {
 			var param2 = arguments[1];
 			if (param2.payState) {
 				var pay = "交易成功";
-				var payData=param2.payData;
+				var payData = param2.payData;
 			} else {
 				var pay = "未下单";
-				var payData="";
+				var payData = "";
 			}
 			var model2 = "<div class=\"showList\" >"
 					+ "<input type=\"checkbox\" name=\"choose\" >"
@@ -126,8 +137,8 @@ $(document).ready(function() {
 					+ "<div class=\"soldM\">" + "	<span>申请售后</span>" + "</div>"
 					+ "<div class=\"countM\">" + "	<span>" + param2.goods.price
 					* param2.number + "</span>" + "</div>"
-					+ "<div class=\"stateM\">" + "	<span>" + pay + "</span></br>"
-					+"<span>"+payData+"</span>"
+					+ "<div class=\"stateM\">" + "	<span>" + pay
+					+ "</span></br>" + "<span>" + payData + "</span>"
 					+ "</div>" + "<div class=\"reviewM\">" + "	<span>评论</span>"
 					+ "</div>" + "<div class=\"logisticsM\">"
 					+ "	<span>查看物流</span>" + "</div>" + "</div>";
