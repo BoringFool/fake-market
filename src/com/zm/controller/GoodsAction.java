@@ -36,6 +36,15 @@ public class GoodsAction {
 		return glist;
 	}
 
+	//模糊查询 同时分页展示
+	@RequestMapping("likeLimit")
+	@ResponseBody
+	public List<Goods> likeRetrieve(@RequestBody Goods g){
+		List<Goods> gl=goodsservice.likeAndLimit(g.getName(),(int) ((g.getId()-1)*50), 50);
+		System.out.println(gl);
+		return gl;
+	}
+	
 	@RequestMapping("showquery")
 	@ResponseBody
 	/*

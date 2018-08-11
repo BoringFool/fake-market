@@ -38,6 +38,10 @@ public class GoodsDao extends BaseDao<Goods> implements IGoodsDao {
 		}
 	}
 	
+	/*
+	 * 查what，从start开始，查number个
+	 * 
+	 * */
 	@SuppressWarnings("unchecked")
 	public List<Goods> likeAndLimit(String what,int start,int number){
 		String hql="from Goods as g where g.name like :zm";

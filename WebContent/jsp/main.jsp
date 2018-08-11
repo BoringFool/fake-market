@@ -811,7 +811,7 @@ goodslist="${sessionScope.goodsList[0]}";
 		</ul>
 	</div>
 	<!-- goods模块 -->
-	<div class="goods">
+	<div id="goods" class="goods">
 		
 	</div>
 

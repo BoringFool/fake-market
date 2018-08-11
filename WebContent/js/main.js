@@ -1,5 +1,11 @@
 $(document).ready(function() {
+	/*
+	 * 实际上查询展示和模糊查询，都是在第一次查询的时候查询了两次， 因为数据少，直接触发了滚条到底的查询
+	 */
+
 	var times = 1;
+	// 记录搜索状态,同时用作计算查询位置起始点
+	var likeTime = 1;
 	oneuse = true;
 	/* 商品展示 */
 	// 页面第一次查询
@@ -7,13 +13,18 @@ $(document).ready(function() {
 		show_goods();
 	}
 	/*
-	 * 如果不加入第二个判断，在抽风式刷新的情况下会 出现两次重复查询
+	 * 如果不加入第二个判断条件，在抽风式刷新的情况下会 出现两次重复查询
 	 */
 	$(window).scroll(function() {
-		if (($(document).scrollTop() + $(window).height() == $(document)
-				.height())
-				&& times == 2) {
-			show_goods();
+		if ($(document).scrollTop() + $(window).height() == $(document)
+				.height()) {
+
+			if (times >= 2) {
+				show_goods();
+			}
+			if (likeTime >= 2) {
+				like();
+			}
 		}
 	});
 
@@ -33,44 +44,72 @@ $(document).ready(function() {
 				$(this).css("display", "none");
 			});
 
-			
-	$("input.form_submit").click(function(){
-		var inputData=$("input.form_input").val();
-		
-		$.ajax({
-			type:"post",
-			url:"",
-			data:JSON.stringify(),
-			contennType:"application/json;charset=utf-8",
-			dataType:"json",
-			success:function(){},
-			error:function(){}
-		});
-	});
-	
-	//跳转cart页面
-	$("a#orderlist").click(function(){
-		window.location.href="http://localhost:8080/fake_market/jsp/cartShow.jsp";
-	});
-	
-	$("a#cart").click(function(){
-		window.location.href="http://localhost:8080/fake_market/jsp/cartShow.jsp?div=cart";
-	});
-	
-	//本来准备做实时刷新的，但购物的goods页面是本页跳转，就没有做了	
-	onTime();
-	function onTime(){
-		$.ajax({
-			type:"get",
-			url:"http://localhost:8080/fake_market/orderlist/countcartn",
-			dataType:"json",
-			success:function(data){
-				$("span#numberOfcart").text(data);
-			},
-			error:function(){}
-		});
+	// 搜索调用
+	$("input.form_submit").click(function() {
+				like();
+			});
+	// 确保搜索框输入变化后，会清除之前的查询结果
+	$("input.form_input").on("change", function() {
+				likeTime = 1;
+			});
+
+	// 模糊查询
+	function like() {
+		var dataI = {
+			"id" : likeTime,
+			"name" : $("input.form_input").val()
+		};
+		if ($("input.form_input").val().length <= 0) {
+			alert("输入不可为空！");
+		} else {
+			$.ajax({
+						type : "post",
+						url : "http://localhost:8080/fake_market/goods/likeLimit",
+						data : JSON.stringify(dataI),
+						contentType : "application/json;charset=utf-8",
+						dataType : "json",
+						success : function(data) {
+							if (likeTime == 1) {
+								$(".goods").children().remove();
+							}
+
+							$.each(data, function(i, good) {
+										md(good);
+									});
+							goodsjumb();
+							likeTime++;
+							window.location.href = "#goods";
+						},
+						error : function() {
+							alert("wrong");
+						}
+					});
+		}
 	}
-	
+	// 跳转cart页面
+	$("a#orderlist").click(function() {
+		window.location.href = "http://localhost:8080/fake_market/jsp/cartShow.jsp";
+	});
+
+	$("a#cart").click(function() {
+		window.location.href = "http://localhost:8080/fake_market/jsp/cartShow.jsp?div=cart";
+	});
+
+	// 本来准备做实时刷新的，但购物的goods页面是本页跳转，就没有做了
+	onTime();
+	function onTime() {
+		$.ajax({
+					type : "get",
+					url : "http://localhost:8080/fake_market/orderlist/countcartn",
+					dataType : "json",
+					success : function(data) {
+						$("span#numberOfcart").text(data);
+					},
+					error : function() {
+					}
+				});
+	}
+
 	/* 滚动首页ad */
 	function turn(i) {
 		if (i == 0) {
