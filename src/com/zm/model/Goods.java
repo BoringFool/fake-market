@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "t_good")
@@ -30,6 +34,18 @@ public class Goods implements Serializable {
 	private String size;
 	private Long number;
 	private String description;
+	@ManyToOne
+	@JoinColumn(name = "stockId")
+	@JsonIgnoreProperties(value = { "goods" })
+	private Stock stock;
+
+	public Stock getStock() {
+		return stock;
+	}
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
 
 	public String getDescription() {
 		return description;
