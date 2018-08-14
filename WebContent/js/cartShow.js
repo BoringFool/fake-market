@@ -84,9 +84,14 @@ $(document).ready(function() {
 						contentType : "application/json;charset=utf-8",
 						dataType : "json",
 						success : function(data) {
-							alert(1);
+							if (data == "1") {
+								alert("支付成功请刷新页面！");
+							} else {
+								alert("库存不足请确定库存后重新下单！");
+							}
 						},
 						error : function() {
+							alert("false");
 						}
 					});
 		}

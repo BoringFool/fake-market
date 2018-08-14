@@ -78,36 +78,56 @@ public class OrderListService implements IOrderListService {
 	}
 
 	@Override
-	// 结算方法，能重复购买，但是不能改变购买数量，因为我没有做
+	// 结算方法，能重复购买，但是不能改变购买数量，因为我没有做(没有返回库存不足的goods，所以只能所有单重新下...)
 	public boolean saveContainOrder(Long[] ids, String username) {
+		boolean buyOk = true;
 		User u = userdao.getByName(username);
 		Order order = new Order();
 		order.setUsers(u);
 		orderdao.add(order);
 		List<OrderList> ol = orderlistdao.getByIds(ids);
 		Iterator<OrderList> it = ol.iterator();
-		while (it.hasNext()) {
-			OrderList oList = it.next();
-			Calendar c = Calendar.getInstance();
-			SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String payData = s.format(c.getTime());
-			// 再次购买相同产品，不做判断，数据库会直接覆盖oId，order会增加，但是orderList不会生成新的记录
-			if (oList.getOrder() == null) {
-				oList.setPayState(true);
-				oList.setPayData(payData);
-				oList.setOrder(order);
-				orderlistdao.update(oList);
-			} else {
-				OrderList orderlN = new OrderList();
-				orderlN.setPayState(true);
-				orderlN.setPayData(payData);
-				orderlN.setOrder(order);
-				orderlN.setNumber(oList.getNumber());
-				orderlN.setGoods(oList.getGoods());
-				orderlistdao.add(orderlN);
+		// 遍历确定库存数量足够ps:不能用while来遍历，会导致遍历一遍后，下面的while直接判定已经遍历过了
+		for (OrderList o : ol) {
+			long stockNumber = o.getGoods().getNumber();
+			int buyNumber = o.getNumber();
+			if (stockNumber < buyNumber) {
+				buyOk = false;
+				break;
 			}
 		}
-		return true;
+
+		// 判断是否进行数量减少完成结算
+		if (buyOk) {
+			while (it.hasNext()) {
+				OrderList oList = it.next();
+				long stockNumber = oList.getGoods().getNumber();
+				int buyNumber = oList.getNumber();
+				oList.getGoods().setNumber(stockNumber - buyNumber);
+				Calendar c = Calendar.getInstance();
+				SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String payData = s.format(c.getTime());
+				// 再次购买相同产品，不做判断，数据库会直接覆盖oId，order会增加，但是orderList不会生成新的记录
+				if (oList.getOrder() == null) {
+					oList.setPayState(true);
+					oList.setPayData(payData);
+					oList.setOrder(order);
+					orderlistdao.update(oList);
+				} else {
+					OrderList orderlN = new OrderList();
+					orderlN.setPayState(true);
+					orderlN.setPayData(payData);
+					orderlN.setOrder(order);
+					orderlN.setNumber(oList.getNumber());
+					orderlN.setGoods(oList.getGoods());
+					orderlistdao.add(orderlN);
+				}
+
+			}
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public long count() {
