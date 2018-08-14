@@ -17,3 +17,32 @@ body {
 	line-height: 1.42857143;
 	color: #333;
 }
+span{
+	display: inline-block;
+}
+.outer {
+	width: 1003px;
+	margin: 0px auto;
+}
+
+ul li {
+	height: 30px;
+	width:500px;
+	float:left;
+	line-height:30px;
+	margin-right:-1px;
+	margin-top:-1px;
+	border: 1px solid #F1F1F1;
+}
+.idSpan{
+	width: 40px;margin-left: 5px;
+}
+.nameSpan{
+	width: 100px;
+}
+span select{
+	width: 80px;
+}
+button{
+	height:24px;width: 76px;float: right;margin: 2px;
+}

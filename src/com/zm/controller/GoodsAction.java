@@ -93,6 +93,7 @@ public class GoodsAction {
 	public C addg(@RequestBody Goods c, HttpServletRequest req) {
 		String st = (String) req.getSession().getAttribute("username");
 		c.setStore(st);
+		c.set;
 		goodsservice.save(c);
 		Goods g = goodsservice.getByName(c.getName());
 		// c在save后c的状态改变，拥有了id
