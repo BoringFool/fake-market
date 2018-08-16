@@ -1,12 +1,15 @@
 package com.zm.controller;
 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zm.model.User;
@@ -20,6 +23,19 @@ public class UserAction {
 	@Resource
 	private IUserService userservice;
 
+	@RequestMapping("showall")
+	@ResponseBody
+	public List<User> showAll(){
+		return userservice.findall();
+	}
+	
+	@RequestMapping("delete")
+	@ResponseBody
+	public Integer delete(@RequestParam("id") long id ){
+		userservice.delet(id);
+		return 1;
+	}
+	
 	@RequestMapping("/register")
 	@ResponseBody
 	public Long register(@RequestBody User u) {

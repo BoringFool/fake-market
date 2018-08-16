@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.zm.service.IOrderListService;
@@ -35,8 +34,14 @@ public class TestListener implements HttpSessionListener {
 	@Override
 	public void sessionDestroyed(HttpSessionEvent sessionevent) {
 		HttpSession session=sessionevent.getSession();
-		WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
-		IOrderListService service = (IOrderListService) applicationContext.getBean("OrderListService");
+		IOrderListService configService = (IOrderListService) WebApplicationContextUtils.getWebApplicationContext(session.getServletContext()).getBean("orderlistservice");
+
+		
+		
+		
+		
+		
+		
 		if(session.getAttribute("shoppingCart")==null) {
 			
 		}else {

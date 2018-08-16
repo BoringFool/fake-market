@@ -1,5 +1,7 @@
 package com.zm.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zm.dao.IRolesDao;
 import com.zm.model.Roles;
+import com.zm.model.RolesName;
 import com.zm.service.IRolesService;
 
 @Service("rolesservice")
@@ -37,6 +40,21 @@ public class RolesService implements IRolesService {
 	public Roles getById(long id) {
 
 		return rolesdao.getById(id);
+	}
+
+	@Override
+	public void defaultR() {
+		for (RolesName e : RolesName.values()) {
+			Roles r = new Roles();
+			r.setName(e);
+			rolesdao.add(r);
+		}
+	}
+
+	@Override
+	public List<Roles> findall() {
+		
+		return rolesdao.findall();
 	}
 
 }

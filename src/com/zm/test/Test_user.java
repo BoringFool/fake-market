@@ -71,4 +71,11 @@ public class Test_user {
 		userservice.update(u);
 		
 	}
+	@SuppressWarnings("resource")
+	@Test
+	public void test_rolesSave() {
+		ApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");
+		IUserService userservice=(IUserService) ctx.getBean("userservice");
+		userservice.rolesSave(1, 2);
+	}
 }

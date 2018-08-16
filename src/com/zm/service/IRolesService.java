@@ -1,5 +1,7 @@
 package com.zm.service;
 
+import java.util.List;
+
 import com.zm.model.Roles;
 
 public interface IRolesService {
@@ -11,4 +13,8 @@ public interface IRolesService {
 	public void update(Roles r);
 
 	public Roles getById(long id);
+	
+	public List<Roles> findall();
+	
+	public void defaultR();
 }

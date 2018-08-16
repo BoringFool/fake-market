@@ -18,6 +18,6 @@ public class Test_user_delete {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");
 		IUserService userservice=(IUserService) ctx.getBean("userservice");
 		User u=userservice.getById(1l);
-		userservice.delet(u);
+		userservice.delet(u.getId());
 	}
 }

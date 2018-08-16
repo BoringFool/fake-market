@@ -7,7 +7,10 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.zm.dao.IRolesDao;
 import com.zm.dao.IUserDao;
+import com.zm.model.Roles;
+import com.zm.model.RolesName;
 import com.zm.model.User;
 import com.zm.service.IUserService;
 
@@ -17,6 +20,8 @@ public class UserService implements IUserService {
 
 	@Resource
 	private IUserDao userdao;
+	@Resource
+	private IRolesDao rolesDao;
 
 	public IUserDao getUserdao() {
 		return userdao;
@@ -36,8 +41,8 @@ public class UserService implements IUserService {
 		}
 	}
 
-	public void delet(User u) {
-		userdao.delet((long) u.getId());
+	public void delet(long id) {
+		userdao.delet(id);
 	}
 
 	public void update(User u) {
@@ -64,6 +69,15 @@ public class UserService implements IUserService {
 	public User getById(Long l) {
 
 		return userdao.getById(l);
+	}
+
+	@Override
+	public void rolesSave(long id, int rn) {
+		RolesName[] rolesN=RolesName.values();
+		Roles r= rolesDao.getbyName(rolesN[rn]);
+		User u=userdao.getById(id);
+		u.getRoles().add(r);
+		userdao.update(u);
 	}
 
 }
