@@ -1,7 +1,7 @@
 package com.zm.controller;
 
-
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -25,35 +25,40 @@ public class UserAction {
 
 	@RequestMapping("showall")
 	@ResponseBody
-	public List<User> showAll(){
+	public List<User> showAll() {
 		return userservice.findall();
 	}
-	
+
 	@RequestMapping("delete")
 	@ResponseBody
-	public Integer delete(@RequestParam("id") long id ){
+	public Integer delete(@RequestParam("id") long id) {
 		userservice.delet(id);
 		return 1;
 	}
-	
+
+	@RequestMapping("authorize")
+	@ResponseBody
+	public Integer authorize(@RequestBody Map<String, String> m) {
+		String id = m.get("id");
+		String role = m.get("roles");
+		userservice.rolesSave(Long.parseLong(id), role);
+		return 1;
+	}
+
 	@RequestMapping("/register")
 	@ResponseBody
 	public Long register(@RequestBody User u) {
-		User user = userservice.getByName(u.getName());
-		if (user == null) {
-			userservice.save(u);
-			return 1l;
-		} else {
-			return 0l;
-		}
+
+		return userservice.save(u);
+
 	}
-	
+
 	@RequestMapping("checkState")
 	@ResponseBody
 	public String checkState(HttpServletRequest req) {
-		if(req.getSession().getAttribute("username")!=null) {
+		if (req.getSession().getAttribute("username") != null) {
 			return "1";
-		}else {
+		} else {
 			return "0";
 		}
 	}

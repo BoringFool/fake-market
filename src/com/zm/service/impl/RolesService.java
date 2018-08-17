@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zm.dao.IRolesDao;
 import com.zm.model.Roles;
-import com.zm.model.RolesName;
 import com.zm.service.IRolesService;
 
 @Service("rolesservice")
@@ -44,16 +43,16 @@ public class RolesService implements IRolesService {
 
 	@Override
 	public void defaultR() {
-		for (RolesName e : RolesName.values()) {
+		String[] rolesE = { "管理员", "商人", "顾客", "游客" };
+		for (String rs : rolesE) {
 			Roles r = new Roles();
-			r.setName(e);
+			r.setName(rs);
 			rolesdao.add(r);
 		}
 	}
 
 	@Override
 	public List<Roles> findall() {
-		
 		return rolesdao.findall();
 	}
 

@@ -8,6 +8,8 @@ a {
 }
 
 ul {
+	overflow: hidden;
+	padding-top: 2px;
 	list-style: none;
 }
 
@@ -17,32 +19,96 @@ body {
 	line-height: 1.42857143;
 	color: #333;
 }
-span{
+
+span {
 	display: inline-block;
 }
+
 .outer {
 	width: 1003px;
 	margin: 0px auto;
 }
 
+.headT {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	margin: 5px;
+}
+
+.headT input {
+	float: right;
+	width: 100px;
+	height: 18px;
+	margin: 4px;
+	padding: 2px;
+	margin-top: 2px;
+}
+
 ul li {
 	height: 30px;
-	width:500px;
-	float:left;
-	line-height:30px;
-	margin-right:-1px;
-	margin-top:-1px;
+	width: 500px;
+	float: left;
+	line-height: 30px;
+	margin-right: -1px;
+	margin-top: -1px;
 	border: 1px solid #F1F1F1;
 }
-.idSpan{
-	width: 40px;margin-left: 5px;
+
+.idSpan {
+	width: 40px;
+	margin-left: 5px;
 }
-.nameSpan{
+
+.nameSpan {
 	width: 100px;
 }
-span select{
+
+span select {
 	width: 80px;
 }
-button{
-	height:24px;width: 76px;float: right;margin: 2px;
+
+button {
+	height: 24px;
+	width: 76px;
+	float: right;
+	margin: 2px;
+	color: #790000; cursor : pointer;
+	border: 1px solid #b9b9b9;
+	cursor: pointer;
+}
+
+button:active {
+	color: #ffffff;
+	border-color: #6fb7ff;
+	background-color: #6fb7ff;
+}
+
+.register {
+	width: 1000px;
+	height: 30px;
+	overflow: hidden;
+	border: 1px solid #F1F1F1;
+	margin: 10px auto;
+}
+
+.register div {
+	width: 220px;
+	height: 30px;
+	line-height: 30px;
+	margin: 0px 4px;
+	float: left;
+}
+
+.register div input {
+	float: right;
+	margin-top: 4px;
+	font: 12px;
+	padding: 2px 4px;
+	line-height: 16px;
+}
+
+.register .selSpan {
+	float: left;
+	margin-top: 4px;
 }

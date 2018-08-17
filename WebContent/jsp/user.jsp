@@ -11,24 +11,26 @@
 </head>
 <body>
 	<div class="outer">
-		<div style="width: 100%;height: 30px;line-height: 30px;margin: 5px;">
+		<div class="headT">
 			<span>hello,管理员！</span>
 			<button type="button">搜索</button>
-			<input type="text" style="float: right;width: 98px;height:18px;margin: 4px;padding: 2px">
+			<input type="text" id="searchIn">
 		</div>
 		<ul id="show"></ul>
-		<div style="width: 1000px;height: 30px;overflow: hidden;border: 1px solid red;margin: 4px;">
-			新建用户  
-			name:<input>
-			<span>
+		<div id="register" class="register">
+			<div style="width: 60px !important;">新建用户 </div>
+			<div><span>name:</span><input id="name" type="text"></div>
+			<div><span>email:</span><input id="email" type="text"></div>
+			<div><span>password:</span><input id="password" type="text"></div>
+			<span class="selSpan">
 				<select>
-					<option value="0" >商家</option>
+					<option value="2" >商家</option>
 					<option value="1">管理员</option>
-					<option value="2">顾客</option>
-					<option value="3" selected="selected">游客</option>
+					<option value="3">顾客</option>
+					<option value="4" selected="selected">游客</option>
 				</select>
 			</span>
-			<button type="button" value="add" >添加</button>
+			<button id="submit" type="button" value="add" >添加</button>
 		</div>
 	</div>
 </body>

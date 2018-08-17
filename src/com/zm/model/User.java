@@ -40,8 +40,8 @@ public class User implements Serializable {
 	private Stock stock;
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_roles", // 中间表的表名
-			joinColumns = { @JoinColumn(name = "rid") }, // 本表的主键
-			inverseJoinColumns = { @JoinColumn(name = "uid") }) // 所映射表的主键
+			joinColumns = { @JoinColumn(name = "uid") }, // 本表的主键
+			inverseJoinColumns = { @JoinColumn(name = "rid") }) // 所映射表的主键
 	@JsonIgnoreProperties(value = { "users" })
 	private Set<Roles> roles;
 	private String name;

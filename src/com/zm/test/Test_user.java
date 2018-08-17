@@ -5,7 +5,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.zm.model.Roles;
-import com.zm.model.RolesName;
 import com.zm.model.Stock;
 import com.zm.model.User;
 import com.zm.service.IRolesService;
@@ -25,11 +24,11 @@ public class Test_user {
 		u.setName("zm22");
 		u.setEmail("1318593330@qq.com");
 		u.setPassword("123456a");
-		String a=userservice.save(u);
+		Long a=userservice.save(u);
 		userservice.getById(1l);
 		System.out.println(a);
 		Roles r=new Roles();
-		r.setName(RolesName.businessman);
+		r.setName("商人");
 	}
 	
 	@SuppressWarnings("resource")
@@ -40,7 +39,7 @@ public class Test_user {
 		IRolesService rolesservice=(IRolesService) ctx.getBean("rolesservice");
 		User u=userservice.getById(1l);
 		Roles r=new Roles();
-		r.setName(RolesName.businessman);
+		r.setName("商人");
 		u.getRoles().add(r);
 		rolesservice.save(r);
 		userservice.update(u);
@@ -76,6 +75,6 @@ public class Test_user {
 	public void test_rolesSave() {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");
 		IUserService userservice=(IUserService) ctx.getBean("userservice");
-		userservice.rolesSave(1, 2);
+		userservice.rolesSave(1, "游客");
 	}
 }

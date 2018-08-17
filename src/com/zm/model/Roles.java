@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name="t_roles")
+@Table(name = "t_roles")
 public class Roles implements Serializable {
 	/**
 	 * 
@@ -25,9 +26,9 @@ public class Roles implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", unique = false, nullable = false)
 	private long id;
-	private RolesName name;
+	private String name;
 
-	@ManyToMany(mappedBy = "roles")
+	@ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
 	@JsonIgnoreProperties(value = { "roles" })
 	private Set<User> user;
 
@@ -43,11 +44,11 @@ public class Roles implements Serializable {
 		this.id = id;
 	}
 
-	public RolesName getName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName(RolesName name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
