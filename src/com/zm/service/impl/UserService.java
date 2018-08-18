@@ -1,6 +1,9 @@
 package com.zm.service.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -35,8 +38,8 @@ public class UserService implements IUserService {
 		if (user != null) {
 			return 0l;
 		} else {
-			while(u.getRoles().isEmpty()) {
-				Roles r=rolesDao.getbyName("顾客");
+			while (u.getRoles().isEmpty()) {
+				Roles r = rolesDao.getbyName("顾客");
 				u.getRoles().add(r);
 			}
 			userdao.add(u);
@@ -75,11 +78,32 @@ public class UserService implements IUserService {
 	}
 
 	@Override
+	// 实体是多对多，实际用的为一对一，所以iterator的遍历如下
 	public void rolesSave(long id, String name) {
 		Roles r = rolesDao.getbyName(name);
 		User u = userdao.getById(id);
-		u.getRoles().add(r);
+		Set<Roles> setR = u.getRoles();
+		Iterator<Roles> itR = setR.iterator();
+		while (itR.hasNext()) {
+			//不先next直接删除会报错
+			itR.next();
+			itR.remove();
+		}
+		setR.add(r);
 		userdao.update(u);
+	}
+
+	@Override
+	public List<User> likeSearch(boolean whichO, String key) {
+		if (whichO) {
+			Roles r = rolesDao.getbyName(key);
+			List<User> ul = new ArrayList<User>();
+			ul.addAll(r.getUser());
+			return ul;
+		} else {
+			return userdao.like(key);
+		}
+
 	}
 
 }

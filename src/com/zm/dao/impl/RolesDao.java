@@ -17,4 +17,5 @@ public class RolesDao extends BaseDao<Roles> implements IRolesDao {
 		return (Roles) q.uniqueResult();
 	}
 
+	
 }

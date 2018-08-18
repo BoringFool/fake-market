@@ -29,6 +29,12 @@ public class UserAction {
 		return userservice.findall();
 	}
 
+	@RequestMapping("likesearch")
+	@ResponseBody
+	public List<User> likeSearch(@RequestParam("wo") boolean whichO, @RequestParam("key") String key) {
+		return userservice.likeSearch(whichO, key);
+	}
+
 	@RequestMapping("delete")
 	@ResponseBody
 	public Integer delete(@RequestParam("id") long id) {

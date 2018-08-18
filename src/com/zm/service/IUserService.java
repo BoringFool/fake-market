@@ -19,6 +19,8 @@ public interface IUserService {
 
 	public void tex();
 
+	public List<User> likeSearch(boolean whichO, String key);
+
 	public User getById(Long l);
 
 	public void rolesSave(long id, String name);

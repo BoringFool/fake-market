@@ -13,7 +13,7 @@
 	<div class="outer">
 		<div class="headT">
 			<span>hello,管理员！</span>
-			<button type="button">搜索</button>
+			<button id="searchB" type="button">搜索</button>
 			<input type="text" id="searchIn">
 		</div>
 		<ul id="show"></ul>

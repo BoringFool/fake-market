@@ -1,8 +1,23 @@
 $(document).ready(function() {
-	//jq对象缓存
+	// jq对象缓存
 	var $reg = $("div#register");
 	var showWay = new Show();
 	showWay.showCheck();
+	// 传入参数判断模糊查询方式：user.name||roles.name
+	$("button#searchB").click(function() {
+				var searchK = $("input#searchIn").val();
+				var a = ["管理员", "商人", "顾客", "游客"];
+				var key = false;
+				// 循环确认是否为roles.name查询
+				for (var n in a) {
+					if (a[n] == searchK) {
+						key = true;
+					}
+				}
+				showWay.showCheck(key, searchK);
+
+			});
+
 	// 删除授权事件
 	$("ul#show").on("click", "button", function() {
 		var id = this.parentNode.childNodes[0].innerHTML;
@@ -15,7 +30,7 @@ $(document).ready(function() {
 		}
 	});
 
-	//register调用
+	// register调用
 	$("button#submit").click(function() {
 		var name = $reg.find("input#name").val();
 		var email = $reg.find("input#email").val();
@@ -29,6 +44,7 @@ $(document).ready(function() {
 		}
 	});
 
+	// 包含数据展示的方法和拼接html方法
 	function Show() {
 		var $this = this;
 		/*
@@ -38,6 +54,7 @@ $(document).ready(function() {
 			var params = arguments;
 			var s1, s2, s3, s4;
 			var selectState = "selected=\"selected\"";
+			// 判断标记为选中显示
 			if (params[2].length <= 0) {
 				s4 = selectState;
 			} else {
@@ -71,7 +88,7 @@ $(document).ready(function() {
 			$("ul#show").append(mod);
 		}
 
-		//全部查询和搜索查询
+		// 全部查询(无参)和搜索查询(有参)
 		this.showCheck = function() {
 			if (arguments.length <= 0) {
 				$.ajax({
@@ -79,7 +96,9 @@ $(document).ready(function() {
 							url : "http://localhost:8080/fake_market/user/showall",
 							dataType : "json",
 							success : function(data) {
+								$("ul#show").children().remove();
 								for (var n in data) {
+
 									showMod(data[n].id, data[n].name,
 											data[n].roles);
 								}
@@ -89,22 +108,29 @@ $(document).ready(function() {
 							}
 						});
 			} else {
+				var address = "http://localhost:8080/fake_market/user/likesearch?wo="
+						+ arguments[0] + "&key=" + arguments[1];
 				$.ajax({
-							type : "",
-							url : "",
-							data : JSON.stringify(),
-							contentType : "application/json;charset=utf-8",
+							type : "get",
+							url : address,
 							dataType : "json",
 							success : function(data) {
+								$("ul#show").children().remove();
+								for (var n in data) {
+									showMod(data[n].id, data[n].name,
+											data[n].roles);
+								}
+
 							},
 							error : function() {
+								alert("wrong!");
 							}
 						});
 			}
 
 		}
 
-		//删除和授权 通过参数数量来确定调用方法
+		// 删除(单参数)和授权（三参数）
 		this.saveChange = function() {
 			if (arguments.length == 1) {
 				$.ajax({
