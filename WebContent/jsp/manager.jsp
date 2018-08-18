@@ -55,12 +55,12 @@
 			<li><label for="number">库存</label><input id="number" type="text"></li>
 		</ul>
 		<div class="submit_out">
-			<input id="submit" class="submit" type="button" value="提交">
+			<button id="submit" class="submit" type="button" >提交</button>
 		</div>
 	</div>
 
 	<div>
-		<button class="aaa">hah</button>
+		<button class="aaa">HaH</button>
 	</div>
 
 

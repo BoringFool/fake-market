@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -35,14 +36,15 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties(value = { "users" })
 	private Set<Order> order;
-	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "sid", unique = true)
+	@JsonIgnore
 	private Stock stock;
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_roles", // 中间表的表名
 			joinColumns = { @JoinColumn(name = "uid") }, // 本表的主键
 			inverseJoinColumns = { @JoinColumn(name = "rid") }) // 所映射表的主键
-	@JsonIgnoreProperties(value = { "users" })
+	@JsonIgnoreProperties(value = { "user" })
 	private Set<Roles> roles;
 	private String name;
 	private String password;

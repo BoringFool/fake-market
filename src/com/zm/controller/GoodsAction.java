@@ -36,15 +36,15 @@ public class GoodsAction {
 		return glist;
 	}
 
-	//模糊查询 同时分页展示
+	// 模糊查询 同时分页展示
 	@RequestMapping("likeLimit")
 	@ResponseBody
-	public List<Goods> likeRetrieve(@RequestBody Goods g){
-		List<Goods> gl=goodsservice.likeAndLimit(g.getName(),(int) ((g.getId()-1)*50), 50);
+	public List<Goods> likeRetrieve(@RequestBody Goods g) {
+		List<Goods> gl = goodsservice.likeAndLimit(g.getName(), (int) ((g.getId() - 1) * 50), 50);
 		System.out.println(gl);
 		return gl;
 	}
-	
+
 	@RequestMapping("showquery")
 	@ResponseBody
 	/*
@@ -88,17 +88,16 @@ public class GoodsAction {
 
 	}
 
-	@RequestMapping("addg")
+	@RequestMapping(value = "addg", produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public C addg(@RequestBody Goods c, HttpServletRequest req) {
-		String st = (String) req.getSession().getAttribute("username");
-		c.setStore(st);
-		goodsservice.save(c);
-		Goods g = goodsservice.getByName(c.getName());
-		// c在save后c的状态改变，拥有了id
-		C m = new C();
-		m.setA((int) g.getId());
-		return m;
+	public String addg(@RequestBody Goods c, HttpServletRequest req) {
+		String userName = (String) req.getSession().getAttribute("username");
+		c.setStore(userName);
+		String result = goodsservice.save(userName, c);
+		if (result == "保存成功！") {
+			result = "添加成功，物品ID号为" + c.getId();
+		}
+		return result;
 	}
 
 	@RequestMapping("addgattr")
@@ -137,7 +136,7 @@ public class GoodsAction {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("cartShow")
 	@ResponseBody
-	//session做差了的后果，需要用这个方法来查询
+	// session做差了的后果，需要用这个方法来查询
 	public List<String[]> show(HttpServletRequest req) {
 		List<String[]> go = new ArrayList<>();
 

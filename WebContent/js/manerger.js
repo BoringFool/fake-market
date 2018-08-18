@@ -307,7 +307,7 @@ $(document).ready(function() {
 					contentType : "application/json;charset=utf-8",
 					datatype : "json",
 					success : function(data) {
-						alert("添加成功，物品ID号为" + data.a);
+						alert(JSON.stringify(data));
 						/*
 						 * 这个方法如果放在ajax外调用，会导致ajax后台动作成功，
 						 * 但是进入error方法。既数据能成功在后台保存成功，但是ajax调用失败

@@ -6,7 +6,7 @@ import com.zm.model.Goods;
 
 public interface IGoodsService {
 
-	public String save(Goods g);
+	public String save(String userName, Goods g);
 
 	public Goods getById(long l);
 

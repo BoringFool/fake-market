@@ -1,0 +1,5 @@
+
+1 想不乱码可有的一种方法(之前都是后传前 前台都会接受后处理后再显示，偶然一次后传前json串直接显示乱码，所以要再后面加如下)
+
+　　在注解@requestMapping()里面加上：produces="text/html;charset=UTF-8"
+

@@ -55,10 +55,11 @@ $(document).ready(function() {
 			var s1, s2, s3, s4;
 			var selectState = "selected=\"selected\"";
 			// 判断标记为选中显示
-			if (params[2].length <= 0) {
+			if (params.length <= 2) {
 				s4 = selectState;
 			} else {
-				switch (params[2][0]) {
+				//roles过来是list
+				switch (parseInt(params[2][0].id)-1) {
 					case 0 :
 						s1 = selectState;
 						break;
@@ -77,7 +78,7 @@ $(document).ready(function() {
 					+ "</span>" + "<span class=\"nameSpan\">" + params[1]
 					+ "</span>" + "<span>" + "	<select name=\"choise\">"
 					+ "	<option value=\"0\" " + s1 + ">管理员</option>"
-					+ "	<option value=\"1\" " + s2 + ">商家</option>"
+					+ "	<option value=\"1\" " + s2 + ">商人</option>"
 					+ "	<option value=\"2\" " + s3 + ">顾客</option>"
 					+ "	<option value=\"3\" " + s4 + ">游客</option>"
 					+ "</select>" + "</span>"
@@ -107,7 +108,7 @@ $(document).ready(function() {
 							error : function() {
 							}
 						});
-			} else {
+			} else if (arguments.length == 2) {
 				var address = "http://localhost:8080/fake_market/user/likesearch?wo="
 						+ arguments[0] + "&key=" + arguments[1];
 				$.ajax({

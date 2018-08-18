@@ -17,8 +17,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name="t_stock")
-public class Stock implements Serializable{
+@Table(name = "t_stock")
+public class Stock implements Serializable {
 	/**
 	 * 
 	 */
@@ -27,7 +27,8 @@ public class Stock implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false, unique = false, name = "id")
 	private long id;
-	@OneToOne(mappedBy="stock")
+	@OneToOne(mappedBy = "stock")
+	@JsonIgnoreProperties(value = { "stock" })
 	private User user;
 	@OneToMany(mappedBy = "stock", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnoreProperties(value = { "stock" })
