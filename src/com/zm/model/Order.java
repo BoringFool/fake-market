@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -30,7 +30,7 @@ public class Order implements Serializable {
 	private long id;
 	@ManyToOne
 	@JoinColumn(name="uid")
-	@JsonIgnoreProperties(value = { "order" })
+	@JsonIgnore
 	private User users;
 	@OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
 	@JsonIgnoreProperties(value = { "order" })

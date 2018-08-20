@@ -14,9 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * 用于检测用户是否登陆的过滤器，如果未登录，则重定向到指的登录页面 配置参数 checkSessionKey 需检查的在 Session 中保存的关键字
- * redirectURL 如果用户未登录，则重定向到指定的页面，URL不包括 ContextPath notCheckURLList
- * 不做检查的URL列表，以分号分开，并且 URL 中不包括 ContextPath
+ * 非注解方式Filter 
+ * 用于检测用户是否登陆的过滤器，如果未登录，则重定向到指的登录页面 配置参数 checkSessionKey 需检查的在
+ * Session 中保存的关键字 redirectURL 如果用户未登录，则重定向到指定的页面，URL不包括 ContextPath
+ * notCheckURLList 不做检查的URL列表，以分号分开，并且 URL 中不包括 ContextPath
  */
 public class Read implements Filter {
 	protected FilterConfig filterConfig = null;
@@ -30,8 +31,7 @@ public class Read implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest servletRequest,
-			ServletResponse servletResponse, FilterChain filterChain)
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
 			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
@@ -40,8 +40,7 @@ public class Read implements Filter {
 			filterChain.doFilter(request, response);
 			return;
 		}
-		if ((!checkRequestURIIntNotFilterList(request))
-				&& session.getAttribute(sessionKey) == null) {
+		if ((!checkRequestURIIntNotFilterList(request)) && session.getAttribute(sessionKey) == null) {
 			response.sendRedirect(request.getContextPath() + redirectURL);
 			return;
 		}
@@ -49,8 +48,7 @@ public class Read implements Filter {
 	}
 
 	private boolean checkRequestURIIntNotFilterList(HttpServletRequest request) {
-		String uri = request.getServletPath()
-				+ (request.getPathInfo() == null ? "" : request.getPathInfo());
+		String uri = request.getServletPath() + (request.getPathInfo() == null ? "" : request.getPathInfo());
 		String temp = request.getRequestURI();
 		temp = temp.substring(request.getContextPath().length() + 1);
 		return notCheckURLList.contains(uri);

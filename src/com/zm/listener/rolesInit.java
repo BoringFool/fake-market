@@ -20,6 +20,7 @@ public class rolesInit implements ServletContextListener {
 	public void contextDestroyed(ServletContextEvent sce) {
 	}
 
+	//添加默认roles
 	public void contextInitialized(ServletContextEvent sce) {
 		IRolesService rolesService = (IRolesService) WebApplicationContextUtils.getWebApplicationContext(sce.getServletContext()).getBean("rolesservice");
 		if(rolesService.findall().size()<=0) {

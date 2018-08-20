@@ -48,7 +48,7 @@ public class GoodsAction {
 	@RequestMapping("showquery")
 	@ResponseBody
 	/*
-	 * 缺少处理imageurl的方法，暂时只能使用一个图片地址的imageurl
+	 * 缺少处理imageUrl的方法，暂时只能使用一个图片地址的imageUrl
 	 */
 	public List<Goods> showquery(@RequestBody C c, HttpServletRequest req) {
 		int first = (c.getA() - 1) * 50;

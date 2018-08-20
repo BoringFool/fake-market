@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "t_orderlist")
@@ -31,7 +31,7 @@ public class OrderList implements Serializable {
 	private Goods goods;
 	@ManyToOne
 	@JoinColumn(name = "oid")
-	@JsonIgnoreProperties(value = { "order_num" })
+	@JsonIgnore
 	private Order order;
 	private boolean payState;
 	private int number;
