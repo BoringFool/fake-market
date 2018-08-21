@@ -12,4 +12,7 @@ public interface IUserDao extends IBaseDao<User> {
 
 	public List<User> like(String key);
 
+	public void name();
+
+	public void zm();
 }

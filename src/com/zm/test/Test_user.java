@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.zm.dao.IUserDao;
 import com.zm.model.Roles;
 import com.zm.model.Stock;
 import com.zm.model.User;
@@ -95,5 +96,17 @@ public class Test_user {
 			System.out.println("******************");
 			System.out.println(it.next().getId());
 		}
+	}
+	
+	@SuppressWarnings("resource")
+	@Test
+	public void test_aspect() {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+		//动态代理所以必须是接口，否则无法生成代理类（代理类无法强转成userDao实例）
+		IUserDao userdao =  (IUserDao) ctx.getBean("userdao");
+		userdao.name();
+		userdao.zm();
+		
+		
 	}
 }

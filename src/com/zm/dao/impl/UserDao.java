@@ -50,5 +50,14 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 		q.setString("zm", "%" + key + "%");
 		return (List<User>)q.list();
 	}
+	
+	//下面这两个方法是用来测试Aspect，
+	public void name() {
+		System.out.println("保存用户...");
+	}
+ 
+	public void zm() {
+		System.out.println("删除用户...");
+	}
 
 }
