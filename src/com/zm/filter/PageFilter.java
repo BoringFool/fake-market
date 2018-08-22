@@ -26,7 +26,7 @@ import com.zm.model.Roles;
 import com.zm.model.User;
 import com.zm.service.IUserService;
 
-@WebFilter(filterName = "/PageFilter", urlPatterns = "/jsp/*", initParams = {
+@WebFilter(filterName = "PageFilter", urlPatterns = "/jsp/*", initParams = {
 		@WebInitParam(name = "loginUrl", value = "/jsp/login.jsp"),
 		@WebInitParam(name = "loginProcess", value = "jsp/login"), @WebInitParam(name = "encoding", value = "utf-8"),
 		@WebInitParam(name = "notCheckURLList", value = "main.jsp,goods.jsp,login.jsp,register.jsp") })

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+//MVC没有配置，不生效
 public class TestInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
