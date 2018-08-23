@@ -13,6 +13,7 @@
 <script src="../js/main.js"></script>
 <script>
 name="${sessionScope.username}";
+roles="${sessionScope.rolesname}";
 goodslist="${sessionScope.goodsList[0]}";
 </script>
 </head>

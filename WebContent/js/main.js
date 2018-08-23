@@ -13,7 +13,7 @@ $(document).ready(function() {
 		show_goods();
 	}
 	/*
-	 * 如果不加入第二个判断条件，在抽风式刷新的情况下会 出现两次重复查询
+	 * 如果不加入第二个判断，在抽风式刷新的情况下会 出现两次重复查询
 	 */
 	$(window).scroll(function() {
 		if ($(document).scrollTop() + $(window).height() == $(document)

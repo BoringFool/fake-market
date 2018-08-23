@@ -47,24 +47,25 @@ public class OrderListAction {
 	@RequestMapping("/paylist")
 	@ResponseBody
 	public String paylist(HttpServletRequest req, @RequestBody Long[] o) {
-		System.out.println(Arrays.toString(o) +"***"+o[0]);
-		boolean b=orderlistservice.saveContainOrder(o, (String)req.getSession().getAttribute("username"));
-		if(b) {
-		return "1";
-		}else {
+		System.out.println(Arrays.toString(o) + "***" + o[0]);
+		boolean b = orderlistservice.saveContainOrder(o, (String) req.getSession().getAttribute("username"));
+		if (b) {
+			return "1";
+		} else {
 			return "0";
 		}
 	}
-	
+
 	@RequestMapping("countcartn")
 	@ResponseBody
+	// 统计orderList数量
 	public long countCartN() {
 		return orderlistservice.count();
 	}
 
 	@RequestMapping("/statelist")
 	@ResponseBody
-	//未使用和已购买数据查询
+	// 未使用和已购买数据查询
 	public List<OrderList> list(@RequestParam("bool") Boolean b) {
 		return orderlistservice.byState(b);
 	}
@@ -72,7 +73,7 @@ public class OrderListAction {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/cart")
 	@ResponseBody
-	//复杂版的cart保存在session
+	// 复杂版的cart保存在session
 	public String cart(HttpServletRequest req) {
 		long id = Long.parseLong(req.getParameter("id"));
 		int num = Integer.parseInt(req.getParameter("num"));
@@ -102,7 +103,7 @@ public class OrderListAction {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/aaa")
 	@ResponseBody
-	//查询session中保存的cart数据，用作新添加展示
+	// 查询session中保存的cart数据，用作新添加展示
 	public Map<Long, Integer> show(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Map<Long, Integer> cart = new HashMap<>();
@@ -116,7 +117,7 @@ public class OrderListAction {
 	}
 
 	@SuppressWarnings("unused")
-	//本来是用来遍历session中cart数据，后来没用了，就没有删除
+	// 本来是用来遍历session中cart数据，后来没用了，就没有删除
 	private void mapIt(Map<Long, Integer> s) {
 		System.out.println(s);
 		Set<Long> ss = s.keySet();
@@ -129,24 +130,24 @@ public class OrderListAction {
 
 	@RequestMapping("/add")
 	@ResponseBody
-	//保存cart数据保存到session的同时保存到数据库
+	// 保存cart数据保存到session的同时保存到数据库
 	public String add(@RequestBody OrderList ol, HttpServletRequest req) {
 		List<OrderList> olist = orderlistservice.getByGoodsId(ol.getGoods().getId());
 		if (olist.size() == 0) {
 			orderlistservice.save(ol);
 		} else if (olist.size() >= 1) {
-			//已存在包含goods的orderList时，以下判断
-			int count=0;
+			// 已存在包含goods的orderList时，以下判断
+			int count = 0;
 			for (OrderList o : olist) {
-				if(o.getOrder()==null) {
+				if (o.getOrder() == null) {
 					o.setNumber(ol.getNumber());
 					orderlistservice.update(o);
 					break;
-				}else{
+				} else {
 					count++;
 				}
 			}
-			if(count==olist.size()) {
+			if (count == olist.size()) {
 				orderlistservice.save(ol);
 			}
 		}
@@ -154,7 +155,7 @@ public class OrderListAction {
 	}
 
 	@SuppressWarnings("rawtypes")
-	//好奇怎么用流从request中拿到文件，从网上查到的
+	// 好奇怎么用流从request中拿到文件，从网上查到的
 	public static Map<String, String> convertRequestPrama(HttpServletRequest request) throws JSONException {
 		Map<String, String> map = new HashMap<String, String>();
 		// 读取请求内容

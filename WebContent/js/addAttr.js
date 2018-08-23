@@ -54,7 +54,7 @@ $(document).ready(function() {
 	 */
 	function judge() {
 		var url = window.location.search;
-		//去除？号
+		// 去除？号
 		var urlsb = url.substring(1);
 		var urlcutF = urlsb.split("&");
 		var urlcutS_f = urlcutF[0].split("=");
@@ -100,6 +100,21 @@ $(document).ready(function() {
 			url : "/fake_market/goods/addgattr",
 			data : JSON.stringify(att),
 			contentType : "application/json;charset:utf-8",
+			complete : function(xhr, status) {
+				// 拦截器实现超时跳转到登录页面
+				// 通过xhr取得响应头
+				var REDIRECT = xhr.getResponseHeader("REDIRECT");
+				// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+				if (REDIRECT == "REDIRECT") {
+					var win = window;
+					while (win != win.top) {
+						win = win.top;
+					}
+					// 重新跳转到 login.html
+					var newH = xhr.getResponseHeader("CONTEXTPATH");
+					win.location.href = newH;
+				}
+			},
 			success : function(data) {
 				if (data == 1) {
 					$(location)
@@ -126,6 +141,21 @@ $(document).ready(function() {
 					data : JSON.stringify(data),
 					contentType : "application/json;charset=utf-8",
 					dataType : "json",
+					complete : function(xhr, status) {
+						// 拦截器实现超时跳转到登录页面
+						// 通过xhr取得响应头
+						var REDIRECT = xhr.getResponseHeader("REDIRECT");
+						// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+						if (REDIRECT == "REDIRECT") {
+							var win = window;
+							while (win != win.top) {
+								win = win.top;
+							}
+							// 重新跳转到 login.html
+							var newH = xhr.getResponseHeader("CONTEXTPATH");
+							win.location.href = newH;
+						}
+					},
 					success : function(data) {
 						$(".id").val(data.id);
 						$(".store").val(data.store);
@@ -165,6 +195,21 @@ $(document).ready(function() {
 					data : JSON.stringify(dataC),
 					contentType : "application/json;charset=utf-8",
 					dataType : "json",
+					complete : function(xhr, status) {
+						// 拦截器实现超时跳转到登录页面
+						// 通过xhr取得响应头
+						var REDIRECT = xhr.getResponseHeader("REDIRECT");
+						// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+						if (REDIRECT == "REDIRECT") {
+							var win = window;
+							while (win != win.top) {
+								win = win.top;
+							}
+							// 重新跳转到 login.html
+							var newH = xhr.getResponseHeader("CONTEXTPATH");
+							win.location.href = newH;
+						}
+					},
 					success : function(data) {
 						$(location)
 								.attr("href",

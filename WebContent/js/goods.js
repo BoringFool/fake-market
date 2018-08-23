@@ -8,7 +8,7 @@ $(document).ready(function() {
 	// 数量输入验证
 	$numIn.on("change", function() {
 				lengthCheck();
-				
+
 			});
 
 	// 立即购买触发
@@ -126,6 +126,21 @@ $(document).ready(function() {
 					url : address.placeholder(goodsid, $numIn.val()),
 					dataType : "json",
 					contentType : "application/json;charset=utf=8",
+					complete : function(xhr, status) {
+						// 拦截器实现超时跳转到登录页面
+						// 通过xhr取得响应头
+						var REDIRECT = xhr.getResponseHeader("REDIRECT");
+						// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+						if (REDIRECT == "REDIRECT") {
+							var win = window;
+							while (win != win.top) {
+								win = win.top;
+							}
+							// 重新跳转到 login.html
+							var newH = xhr.getResponseHeader("CONTEXTPATH");
+							win.location.href = newH;
+						}
+					},
 					success : function(data) {
 						if (data == 2) {
 							if (window.confirm('商品最近已经添加是否覆盖？')) {
@@ -158,10 +173,25 @@ $(document).ready(function() {
 					url : "http://localhost:8080/fake_market/orderlist/add",
 					data : JSON.stringify(ol),
 					contentType : "application/json;charset=utf-8",
-					dataType:"json",
+					dataType : "json",
+					complete : function(xhr, status) {
+						// 拦截器实现超时跳转到登录页面
+						// 通过xhr取得响应头
+						var REDIRECT = xhr.getResponseHeader("REDIRECT");
+						// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+						if (REDIRECT == "REDIRECT") {
+							var win = window;
+							while (win != win.top) {
+								win = win.top;
+							}
+							// 重新跳转到 login.html
+							var newH = xhr.getResponseHeader("CONTEXTPATH");
+							win.location.href = newH;
+						}
+					},
 					seccess : function(data) {
-						alert(data);
-					
+						alert("保存成功！");
+
 					},
 					error : function() {
 						alert("wrong!");

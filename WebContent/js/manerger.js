@@ -134,6 +134,21 @@ $(document).ready(function() {
 					data : JSON.stringify(g),
 					contentType : "application/json;charset=utf-8",
 					datatype : "json",
+					complete : function(xhr, status) {
+						// 拦截器实现超时跳转到登录页面
+						// 通过xhr取得响应头
+						var REDIRECT = xhr.getResponseHeader("REDIRECT");
+						// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+						if (REDIRECT == "REDIRECT") {
+							var win = window;
+							while (win != win.top) {
+								win = win.top;
+							}
+							// 重新跳转到 login.html
+							var newH = xhr.getResponseHeader("CONTEXTPATH");
+							win.location.href = newH;
+						}
+					},
 					success : function(data) {
 						$.each(data, function(i, topic) {
 									show(topic);
@@ -293,7 +308,7 @@ $(document).ready(function() {
 			alert("不可为空！价格和库存必须为数字！");
 			return;
 		}
-		var data = {
+		var dataI = {
 			"name" : name,
 			"description" : description,
 			"price" : price,
@@ -303,11 +318,26 @@ $(document).ready(function() {
 		$.ajax({
 					type : "post",
 					url : "/fake_market/goods/addg",
-					data : JSON.stringify(data),
+					data : JSON.stringify(dataI),
 					contentType : "application/json;charset=utf-8",
-					datatype : "json",
+					dataType : "text",
+					complete : function(xhr, status) {
+						// 拦截器实现超时跳转到登录页面
+						// 通过xhr取得响应头
+						var REDIRECT = xhr.getResponseHeader("REDIRECT");
+						// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+						if (REDIRECT == "REDIRECT") {
+							var win = window;
+							while (win != win.top) {
+								win = win.top;
+							}
+							// 重新跳转到 login.html
+							var newH = xhr.getResponseHeader("CONTEXTPATH");
+							win.location.href = newH;
+						}
+					},
 					success : function(data) {
-						alert(JSON.stringify(data));
+						alert(data.toString());
 						/*
 						 * 这个方法如果放在ajax外调用，会导致ajax后台动作成功，
 						 * 但是进入error方法。既数据能成功在后台保存成功，但是ajax调用失败
@@ -331,7 +361,7 @@ $(document).ready(function() {
 	}
 
 	/*
-	 * 测试前台数组string之间的转换 和后台的转换
+	 * 测试前台数组string之间的转换 和后台的转换(NoUse Now)
 	 */
 	function testjsontojson() {
 		var datatest = ["asd", "123", "asd"];
@@ -379,6 +409,21 @@ $(document).ready(function() {
 					data : JSON.stringify(good),
 					contentType : "application/json;charset=utf-8",
 					dataType : "json",
+					complete : function(xhr, status) {
+						// 拦截器实现超时跳转到登录页面
+						// 通过xhr取得响应头
+						var REDIRECT = xhr.getResponseHeader("REDIRECT");
+						// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+						if (REDIRECT == "REDIRECT") {
+							var win = window;
+							while (win != win.top) {
+								win = win.top;
+							}
+							// 重新跳转到 login.html
+							var newH = xhr.getResponseHeader("CONTEXTPATH");
+							win.location.href = newH;
+						}
+					},
 					success : function(data) {
 						alert(data);
 					},
@@ -458,6 +503,21 @@ $(document).ready(function() {
 					data : JSON.stringify(data),
 					contentType : "application/json;charset=utf-8",
 					dataType : "json",
+					complete : function(xhr, status) {
+						// 拦截器实现超时跳转到登录页面
+						// 通过xhr取得响应头
+						var REDIRECT = xhr.getResponseHeader("REDIRECT");
+						// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+						if (REDIRECT == "REDIRECT") {
+							var win = window;
+							while (win != win.top) {
+								win = win.top;
+							}
+							// 重新跳转到 login.html
+							var newH = xhr.getResponseHeader("CONTEXTPATH");
+							win.location.href = newH;
+						}
+					},
 					success : function(data) {
 						$(location)
 								.attr("href",

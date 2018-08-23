@@ -49,9 +49,28 @@
 
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/user/*" />
-			<bean id="controllerInterceptor"
-				class="com.zm.interceptor.ControllerInterceptor"></bean>
+			<mvc:mapping path="/user/**" />
+			<mvc:exclude-mapping path="/user/in" />
+			<mvc:exclude-mapping path="/user/register" />
+			<mvc:exclude-mapping path="/user/checkState" />
+			<bean id="userInterceptor"
+				class="com.zm.interceptor.UserConInterceptor"></bean>
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/goods/**" />
+			<mvc:exclude-mapping path="/goods/count" />
+			<mvc:exclude-mapping path="/goods/showquery" />
+			<mvc:exclude-mapping path="/goods/getbyid" />
+			<mvc:exclude-mapping path="/goods/likeLimit" />
+			<bean id="goodsInterceptor"
+				class="com.zm.interceptor.GoodsConInterceptor"></bean>
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/orderlist/**" />
+			<bean id="orderlistIntercepter"
+				class="com.zm.interceptor.OrderListConInterceptor"></bean>
 		</mvc:interceptor>
 		<!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->
 	</mvc:interceptors>

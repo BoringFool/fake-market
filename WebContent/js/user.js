@@ -58,8 +58,8 @@ $(document).ready(function() {
 			if (params.length <= 2) {
 				s4 = selectState;
 			} else {
-				//roles过来是list
-				switch (parseInt(params[2][0].id)-1) {
+				// roles过来是list
+				switch (parseInt(params[2][0].id) - 1) {
 					case 0 :
 						s1 = selectState;
 						break;
@@ -96,6 +96,23 @@ $(document).ready(function() {
 							type : "get",
 							url : "http://localhost:8080/fake_market/user/showall",
 							dataType : "json",
+							complete : function(xhr, status) {
+								// 拦截器实现超时跳转到登录页面
+								// 通过xhr取得响应头
+								var REDIRECT = xhr
+										.getResponseHeader("REDIRECT");
+								// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+								if (REDIRECT == "REDIRECT") {
+									var win = window;
+									while (win != win.top) {
+										win = win.top;
+									}
+									// 重新跳转到 login.html
+									var newH = xhr
+											.getResponseHeader("CONTEXTPATH");
+									win.location.href = newH;
+								}
+							},
 							success : function(data) {
 								$("ul#show").children().remove();
 								for (var n in data) {
@@ -115,6 +132,23 @@ $(document).ready(function() {
 							type : "get",
 							url : address,
 							dataType : "json",
+							complete : function(xhr, status) {
+								// 拦截器实现超时跳转到登录页面
+								// 通过xhr取得响应头
+								var REDIRECT = xhr
+										.getResponseHeader("REDIRECT");
+								// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+								if (REDIRECT == "REDIRECT") {
+									var win = window;
+									while (win != win.top) {
+										win = win.top;
+									}
+									// 重新跳转到 login.html
+									var newH = xhr
+											.getResponseHeader("CONTEXTPATH");
+									win.location.href = newH;
+								}
+							},
 							success : function(data) {
 								$("ul#show").children().remove();
 								for (var n in data) {
@@ -139,6 +173,23 @@ $(document).ready(function() {
 							url : "http://localhost:8080/fake_market/user/delete?id="
 									+ arguments[0],
 							dataType : "json",
+							complete : function(xhr, status) {
+								// 拦截器实现超时跳转到登录页面
+								// 通过xhr取得响应头
+								var REDIRECT = xhr
+										.getResponseHeader("REDIRECT");
+								// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+								if (REDIRECT == "REDIRECT") {
+									var win = window;
+									while (win != win.top) {
+										win = win.top;
+									}
+									// 重新跳转到 login.html
+									var newH = xhr
+											.getResponseHeader("CONTEXTPATH");
+									win.location.href = newH;
+								}
+							},
 							success : function(data) {
 								alert("删除成功！");
 								window.location.reload();
@@ -159,6 +210,23 @@ $(document).ready(function() {
 							data : JSON.stringify(dataI),
 							contentType : "application/json;charset=utf-8",
 							dataType : "json",
+							complete : function(xhr, status) {
+								// 拦截器实现超时跳转到登录页面
+								// 通过xhr取得响应头
+								var REDIRECT = xhr
+										.getResponseHeader("REDIRECT");
+								// 如果响应头中包含 REDIRECT 则说明是拦截器返回的
+								if (REDIRECT == "REDIRECT") {
+									var win = window;
+									while (win != win.top) {
+										win = win.top;
+									}
+									// 重新跳转到 login.html
+									var newH = xhr
+											.getResponseHeader("CONTEXTPATH");
+									win.location.href = newH;
+								}
+							},
 							success : function(data) {
 								alert("权限更改成功！");
 								window.location.reload();

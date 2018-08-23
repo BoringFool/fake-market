@@ -43,12 +43,8 @@ public class GoodsService implements IGoodsService {
 		while (it.hasNext()) {
 			Roles r = it.next();
 			if (r.getName().equals("商人")) {
-				System.out.println("*****************************************");
 				ok = true;
 				break;
-			} else {
-
-				System.out.println("*****************************************2" + r.getName() + ok);
 			}
 		}
 		if (ok) {
@@ -61,12 +57,12 @@ public class GoodsService implements IGoodsService {
 			if (newG == null) {
 				g.setStock(u.getStock());
 				goodsdao.add(g);
-				return "保存成功！";
+				return "1";
 			} else {
-				return "商品已经存在！";
+				return "2";
 			}
 		} else {
-			return "仅商人可以添加商品！";
+			return "0";
 		}
 
 	}

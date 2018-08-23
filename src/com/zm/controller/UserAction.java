@@ -1,5 +1,6 @@
 package com.zm.controller;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zm.model.Roles;
 import com.zm.model.User;
 import com.zm.myuntil.FileUpload;
 import com.zm.service.IUserService;
@@ -44,10 +46,12 @@ public class UserAction {
 
 	@RequestMapping("authorize")
 	@ResponseBody
-	public Integer authorize(@RequestBody Map<String, String> m) {
+	public Integer authorize(@RequestBody Map<String, String> m, HttpServletRequest req) {
 		String id = m.get("id");
 		String role = m.get("roles");
 		userservice.rolesSave(Long.parseLong(id), role);
+		// 覆盖session中的rolesName，被用于拦截器判断
+		req.getSession().setAttribute("rolesname", role);
 		return 1;
 	}
 
@@ -76,6 +80,7 @@ public class UserAction {
 	@ResponseBody
 	public Long in(@RequestBody User u, HttpServletRequest req) {
 		Long tof;
+		String rolesName = null;
 		User user = userservice.getByName(u.getName());
 		if (user == null) {
 			return tof = 3l;
@@ -84,6 +89,14 @@ public class UserAction {
 				tof = 1l;
 				req.getSession().setAttribute("logoin", "ok");
 				req.getSession().setAttribute("username", u.getName());
+				// u是瞬时状态，所以没有roles，user是持久的，所以用user来获取。
+				Iterator<Roles> it = user.getRoles().iterator();
+				while (it.hasNext()) {
+					Roles r = it.next();
+					rolesName = r.getName();
+					break;
+				}
+				req.getSession().setAttribute("rolesname", rolesName);
 			} else {
 				tof = 0l;
 			}
