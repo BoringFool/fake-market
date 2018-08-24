@@ -71,7 +71,11 @@ public class PageFilter implements Filter {
 				return;
 			}
 		}
-
+		if(currentUrl.equals("personalPage.jsp")&& !("游客".equals(nameR))) {
+			chain.doFilter(req, rsp);
+			return;
+		}
+		
 		if (rightContains(nameR)) {
 			chain.doFilter(req, rsp);
 			return;

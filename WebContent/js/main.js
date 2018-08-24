@@ -226,14 +226,40 @@ $(document).ready(function() {
 
 	};
 
+	// 查看登陆者是否有权限,根据权限显示
 	loginChange();
 	function loginChange() {
 		if (name != "") {
 			$("#loginchange").css("color", "red");
 			$("#loginchange").text(name);
-			$(".bottom_half").eq(2).css("display", "block");
 		} else {
-			$(".bottom_half").eq(2).css("display", "none");
+			$("li.bottom_half").eq(0).css("display", "none");
+			$("li.bottom_half").eq(1).css("display", "none");
+		}
+
+		if (roles != "") {
+			switch (roles) {
+				case "管理员" :
+					$("ul#headTitle")
+							.append("<li class=\"bottom_half\"><a href=\"manager.jsp\" target=\"_blank\">后台管理</a></li>");
+					$("ul#headTitle")
+							.append("<li class=\"bottom_half\"><a href=\"user.jsp\" target=\"_blank\">用户管理</a> </li>");
+					$("li.bottom_half").eq(0).css("display", "block");
+					$("li.bottom_half").eq(1).css("display", "block");
+					break;
+				case "商人" :
+					$("ul#headTitle")
+							.append("<li class=\"bottom_half\"><a href=\"manager.jsp\" target=\"_blank\">后台管理</a></li>");
+					$("li.bottom_half").eq(0).css("display", "block");
+					$("li.bottom_half").eq(1).css("display", "block");
+					break;
+				case "顾客" :
+					$("li.bottom_half").eq(0).css("display", "block");
+					$("li.bottom_half").eq(1).css("display", "block");
+					break;
+				case "游客" :
+					break;
+			}
 		}
 	}
 	// 用户已登陆，阻止a标签跳转登陆页面
@@ -242,6 +268,39 @@ $(document).ready(function() {
 					$("#loginchange").attr("href", "");
 				}
 			});
+
+	// 用户个人管理div显示管理
+	jumpShowOrNot();
+	function jumpShowOrNot() {
+		var timeout;
+		$("#loginchange").hover(function() {
+					if (name != "") {
+						$("div.userJump").css("display", "block");
+					}
+				}, function() {
+					timeout = setTimeout(function() {
+								$("div.userJump").css("display", "none");
+							}, 200);
+
+				});
+
+		$("div.userJump").hover(function() {
+					clearTimeout(timeout);
+					$("div.userJump").css("display", "block");
+				}, function() {
+					$("div.userJump").css("display", "none");
+				});
+	}
+
+	//
+	$("div.userJump ul li").click(function() {
+		var textC = $(this).text();
+		if (textC == "账号管理") {
+			window.location.href = "http://localhost:8080/fake_market/jsp/personalPage.jsp?name="+name;
+		} else if (textC == "退出") {
+			alert(1);
+		}
+	});
 
 	/*
 	 * 用来打断点进入查看jquery源码入口

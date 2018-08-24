@@ -3,7 +3,6 @@ $(document).ready(function() {
 	var goodsid = judge();
 
 	$(document).ready(function() {
-
 				change.goCheck();
 			});
 

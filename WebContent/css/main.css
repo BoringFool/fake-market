@@ -26,8 +26,9 @@ body {
 	width: 100%;
 	height: 32px;
 	background-color: #f2f2f2;
-	margin: 0px auto;
+	position: relative; margin : 0px auto;
 	border-bottom: 1px solid #e5e5e5;
+	margin: 0px auto;
 }
 
 .head ul {
@@ -63,6 +64,29 @@ body {
 
 .head ul li span {
 	color: #333;
+}
+
+.head .userJump {
+	width: 80px;
+	position: absolute;
+	top: 32px;
+	left: 412px;
+	background-color: #f2f2f2;
+	z-index: 12;
+	display: none;
+}
+
+.head .userJump ul {
+	text-align: center;
+	width: 80px;
+	padding-bottom:1px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.head .userJump ul li {
+	border: 1px solid #a0a0a0;
+	margin-bottom: -1px;
 }
 
 .search {
@@ -131,11 +155,21 @@ body {
 	outline: none;
 	cursor: pointer;
 }
-.search .show_item{
-	color: #999;margin-top: 5px;float: left;overflow: hidden;
+
+.search .show_item {
+	color: #999;
+	margin-top: 5px;
+	float: left;
+	overflow: hidden;
 }
-.search .show_item li{
-	display: inline-block; border-left: 1px solid #ccc; line-height: 1.1; padding: 0 10px;height: 14px; font-size: 14px;
+
+.search .show_item li {
+	display: inline-block;
+	border-left: 1px solid #ccc;
+	line-height: 1.1;
+	padding: 0 10px;
+	height: 14px;
+	font-size: 14px;
 }
 
 .nav_box {
@@ -276,7 +310,7 @@ body {
 	display: block;
 }
 
-.brand,.brandwall_two,.goods {
+.brand, .brandwall_two, .goods {
 	width: 1260px;
 	margin: 0px auto;
 	margin-top: 30px;
@@ -315,7 +349,7 @@ body {
 	position: relative;
 }
 
-.brand .branwall .box .title_l,.title_l_r {
+.brand .branwall .box .title_l, .title_l_r {
 	display: inline-block;
 	font-weight: 700;
 	color: #333;

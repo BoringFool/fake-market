@@ -2,7 +2,7 @@
 <%@page import="com.zm.model.Goods"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="cartlogo.jsp" %> 
+<%@ include file="cartlogo.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,24 +12,31 @@
 <script src="../js/jquery-min.js"></script>
 <script src="../js/main.js"></script>
 <script>
-name="${sessionScope.username}";
-roles="${sessionScope.rolesname}";
-goodslist="${sessionScope.goodsList[0]}";
+	name = "${sessionScope.username}";
+	roles = "${sessionScope.rolesname}";
+	goodslist = "${sessionScope.goodsList[0]}";
 </script>
 </head>
 <body>
 	<!-- head -->
 	<div class="head">
-		<ul>
+		<ul id="headTitle">
 			<li class="top_half">喵，欢迎来天猫</li>
 			<li class="top_half"><a href="login.jsp" id="loginchange">登陆</a></li>
 			<li class="top_half"><a href="register.jsp">免费注册</a></li>
 
 			<li class="bottom_half"><a id="orderlist">我的订单</a></li>
-			<li class="bottom_half"><a id="cart">购物车<span id="numberOfcart" style="color: red;font-size: 14px;margin: 0px 2px;">0</span>件</a></li>
-			<li class="bottom_half"><a href="manager.jsp" target="_blank">后台管理</a></li>
-			
+			<li class="bottom_half"><a id="cart">购物车<span
+					id="numberOfcart"
+					style="color: red; font-size: 14px; margin: 0px 2px;">0</span>件
+			</a></li>
 		</ul>
+		<div class="userJump">
+			<ul>
+				<li>账号管理</li>
+				<li>退出</li>
+			</ul>
+		</div>
 	</div>
 	<!-- search -->
 	<div class="search">
@@ -39,8 +46,8 @@ goodslist="${sessionScope.goodsList[0]}";
 		</div>
 		<div class="search_right">
 			<div class="search_form">
-					<input type="text" class="form_input">
-					<input type="submit" class="form_submit" value="搜索">
+				<input type="text" class="form_input"> <input type="submit"
+					class="form_submit" value="搜索">
 			</div>
 			<ul class="show_item">
 				<li style="margin-left: -10px;">针织衫</li>
@@ -812,14 +819,11 @@ goodslist="${sessionScope.goodsList[0]}";
 		</ul>
 	</div>
 	<!-- goods模块 -->
-	<div id="goods" class="goods">
-		
-	</div>
+	<div id="goods" class="goods"></div>
 
 
 	<div>
-		<span> 
-			<%-- <%
+		<span> <%-- <%
 				List<Goods> g=(List<Goods>)request.getSession().getAttribute("goodsList");
 				for(Goods gg:g){
 			%>		

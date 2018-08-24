@@ -12,9 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 public class AjaxResponseMethod {
 
 	/*
-	 * 1.request.getSchema() 可以返回当前页面使用的协议，HTTP 或是 HTTPS;
-	 * 2.request.getServerName() 可以返回当前页面所在的服务器的名字; 
-	 * 3.request.getServerPort() 可以返回当前页面所在的服务器使用的端口; 
+	 * 1.request.getSchema() 可以返回当前页面使用的协议，HTTP 或是 HTTPS; 2.request.getServerName()
+	 * 可以返回当前页面所在的服务器的名字; 3.request.getServerPort() 可以返回当前页面所在的服务器使用的端口;
 	 * 4.request.getContextPath() 可以返回当前页面所在的应用的名字;
 	 */
 	public static void rspSend(HttpServletRequest req, HttpServletResponse rsp, String goWhere) throws IOException {
@@ -35,6 +34,5 @@ public class AjaxResponseMethod {
 		} else {
 			rsp.sendRedirect(basePath + goWhere);
 		}
-		System.out.println(basePath + goWhere);
 	}
 }
