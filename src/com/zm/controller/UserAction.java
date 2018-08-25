@@ -25,6 +25,27 @@ public class UserAction {
 	@Resource
 	private IUserService userservice;
 
+	@RequestMapping("getbyname")
+	@ResponseBody
+	public User getByName(@RequestParam("name") String name) {
+		return userservice.getByName(name);
+	}
+
+	@RequestMapping("checkpassword")
+	@ResponseBody
+	public boolean checkPassword(@RequestBody User u) {
+		return userservice.checkPassword(u);
+	}
+
+	@RequestMapping("changepass")
+	@ResponseBody
+	public boolean changePass(@RequestBody Map<String, String> map) {
+		String u = map.get("name");
+		String o = map.get("old");
+		String n = map.get("new");
+		return userservice.changePass(u, o, n);
+	}
+
 	@RequestMapping("showall")
 	@ResponseBody
 	public List<User> showAll() {

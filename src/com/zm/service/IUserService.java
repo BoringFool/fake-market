@@ -24,4 +24,8 @@ public interface IUserService {
 	public User getById(Long l);
 
 	public void rolesSave(long id, String name);
+
+	public boolean checkPassword(User u);
+
+	public boolean changePass(String userName,String old, String newOne);
 }

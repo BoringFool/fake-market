@@ -85,7 +85,7 @@ public class UserService implements IUserService {
 		Set<Roles> setR = u.getRoles();
 		Iterator<Roles> itR = setR.iterator();
 		while (itR.hasNext()) {
-			//不先next直接删除会报错
+			// 不先next直接删除会报错
 			itR.next();
 			itR.remove();
 		}
@@ -104,6 +104,24 @@ public class UserService implements IUserService {
 			return userdao.like(key);
 		}
 
+	}
+
+	@Override
+	public boolean checkPassword(User u) {
+		User user = userdao.getByName(u.getName());
+		return u.getPassword().equals(user.getPassword());
+	}
+
+	@Override
+	public boolean changePass(String userName, String old, String newOne) {
+		User u = userdao.getByName(userName);
+		if (u.getPassword().equals(old)) {
+			u.setPassword(newOne);
+			userdao.update(u);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

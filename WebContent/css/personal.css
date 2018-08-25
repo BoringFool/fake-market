@@ -17,3 +17,50 @@ body {
 	line-height: 1.42857143;
 	color: #333;
 }
+
+.passChange {
+	width: 250px;
+	height: 200px;
+	border: 1px solid #868686;
+	margin: 100px auto;
+}
+
+table {
+	width: 250px;
+	height: 200px;
+	border-collapse:collapse;
+	position: absolute;
+	left:0px;
+	text-align: center;
+}
+table td{
+	border: 1px solid red;
+}
+.diff{
+	width: 180px !important;
+}
+.capable {
+	width: 148px;
+	height: 18px;
+	line-height: 26px;
+	font-size: 14px;
+	margin: 5px 45px;
+	padding: 4px 6px;
+	border: 1px solid #868686;
+}
+
+.submit {
+	width: 60px;
+	height: 30px;
+	margin: 10px 95px;
+	background-color: #b2b2b2;
+	border: 1px solid #868686;
+	cursor: pointer;
+}
+
+.submit:active {
+	color: #ffffff;
+	border-color: #00dd37;
+	background-color: #00dd37;
+	border-color: #00dd37;
+}
