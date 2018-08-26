@@ -4,11 +4,13 @@ $(document).ready(function() {
 	var userName = uri.split("=")[1];
 
 	$("test").click(function() {
-				//
-				$("table#show").animate({
-							left : "+=50px"
-						}, 100);
+
 			});
+
+	//
+	$("table#show").animate({
+				left : "1000px"
+			}, 10000);
 
 	// 密码改变提交
 	$("button#change").click(function() {
