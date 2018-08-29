@@ -25,7 +25,9 @@ public interface IUserService {
 
 	public void rolesSave(long id, String name);
 
-	public boolean checkPassword(User u);
+	public boolean check(User u);
 
-	public boolean changePass(String userName,String old, String newOne);
+	public boolean changePass(String userName, String old, String newOne);
+
+	public boolean changeEmail(String userName, String old, String newOne);
 }

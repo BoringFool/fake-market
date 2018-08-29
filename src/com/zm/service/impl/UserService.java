@@ -107,9 +107,16 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean checkPassword(User u) {
+	public boolean check(User u) {
 		User user = userdao.getByName(u.getName());
-		return u.getPassword().equals(user.getPassword());
+		if (u.getEmail() != null) {
+			return u.getEmail().equals(user.getEmail());
+		} else if (u.getPassword() != null) {
+			return u.getPassword().equals(user.getPassword());
+		} else {
+			return false;
+		}
+
 	}
 
 	@Override
@@ -117,6 +124,18 @@ public class UserService implements IUserService {
 		User u = userdao.getByName(userName);
 		if (u.getPassword().equals(old)) {
 			u.setPassword(newOne);
+			userdao.update(u);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean changeEmail(String userName, String old, String newOne) {
+		User u = userdao.getByName(userName);
+		if (u.getEmail().equals(old)) {
+			u.setEmail(newOne);
 			userdao.update(u);
 			return true;
 		} else {

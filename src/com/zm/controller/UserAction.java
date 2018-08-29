@@ -31,19 +31,26 @@ public class UserAction {
 		return userservice.getByName(name);
 	}
 
-	@RequestMapping("checkpassword")
+	@RequestMapping("check")
 	@ResponseBody
-	public boolean checkPassword(@RequestBody User u) {
-		return userservice.checkPassword(u);
+	public boolean check(@RequestBody User u) {
+		return userservice.check(u);
 	}
 
-	@RequestMapping("changepass")
+	@RequestMapping("change")
 	@ResponseBody
-	public boolean changePass(@RequestBody Map<String, String> map) {
+	public boolean change(@RequestBody Map<String, String> map) {
 		String u = map.get("name");
 		String o = map.get("old");
 		String n = map.get("new");
-		return userservice.changePass(u, o, n);
+		String r=map.get("PorE");
+		if(r.equals("P")) {
+			return userservice.changePass(u, o, n);
+		}else if("E".equals(r)) {
+			return userservice.changeEmail(u, o, n);
+		}else {
+			return false;
+		}
 	}
 
 	@RequestMapping("showall")
