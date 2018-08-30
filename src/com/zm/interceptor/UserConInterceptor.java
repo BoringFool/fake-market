@@ -11,7 +11,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class UserConInterceptor extends HandlerInterceptorAdapter {
 
-	public final static List<String> needUrl = Arrays.asList("/user/getbyname", "/user/checkpassword");
+	public final static List<String> NEEDURL = Arrays.asList("/user/getbyname", "/user/checkpassword");
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -24,6 +24,10 @@ public class UserConInterceptor extends HandlerInterceptorAdapter {
 		String url = uri.substring(context.length());
 		StringBuffer juge = request.getRequestURL();
 
+		if (url.equals("/user/signout")) {
+			return true;
+		}
+		
 		// 因为filter只过滤page请求，防止有人直接输入controller请求，所以需要验证登陆
 		if (userName == null) {
 			AjaxResponseMethod.rspSend(request, response, "/jsp/login.jsp");
@@ -40,7 +44,7 @@ public class UserConInterceptor extends HandlerInterceptorAdapter {
 					AjaxResponseMethod.rspSend(request, response, "/jsp/noRight.jsp");
 					return false;
 				}
-			} else if (needUrl.contains(url)) {
+			} else if (NEEDURL.contains(url)) {
 				return true;
 			}
 

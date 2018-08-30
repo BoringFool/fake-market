@@ -44,15 +44,16 @@ public class LoginSame implements HttpSessionAttributeListener, HttpSessionListe
 	public void attributeReplaced(HttpSessionBindingEvent arg0) {
 		String name = arg0.getName();
 		if (name.equals("username")) {
-			String oldub = (String) arg0.getValue();
-			map.remove(oldub);
-			String ub = (String) arg0.getSession().getAttribute("username");
-			if (map.get(ub) != null) {
-				// map中有记录，表明该帐号在其他机器上登录过，将以前的登录失效
-				HttpSession session = map.get(ub);
+			// 看API就知道了
+			String oldUserName = (String) arg0.getValue();
+			map.remove(oldUserName);
+			String userName = (String) arg0.getSession().getAttribute("username");
+			if (map.get(userName) != null) {
+				// map中有记录，表明该帐号在其他机器上登录过，将之前的登录失效
+				HttpSession session = map.get(userName);
 				session.removeAttribute("username");
 			}
-			map.put(ub, arg0.getSession());
+			map.put(userName, arg0.getSession());
 		}
 	}
 

@@ -296,9 +296,20 @@ $(document).ready(function() {
 	$("div.userJump ul li").click(function() {
 		var textC = $(this).text();
 		if (textC == "账号管理") {
-			window.location.href = "http://localhost:8080/fake_market/jsp/personalPage.jsp?name="+name;
+			window.location.href = "http://localhost:8080/fake_market/jsp/personalPage.jsp?name="
+					+ name;
 		} else if (textC == "退出") {
-			alert(1);
+			$.ajax({
+						type : "get",
+						url : "/fake_market/user/signout",
+						success : function() {
+							$("li.bottom_half").css("display", "block");
+							window.location.reload();
+						},
+						error : function() {
+							alert("wrong!");
+						}
+					});
 		}
 	});
 

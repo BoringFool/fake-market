@@ -31,6 +31,18 @@ public class UserAction {
 		return userservice.getByName(name);
 	}
 
+	@RequestMapping("signout")
+	public String signout(HttpServletRequest req) {
+		if (req.getSession().getAttribute("username") != null) {
+			req.getSession().removeAttribute("username");
+			req.getSession().removeAttribute("logoin");
+			req.getSession().removeAttribute("rolesname");
+		} else {
+			System.out.println("非页面跳过来的！");
+		}
+		return "main";
+	}
+
 	@RequestMapping("check")
 	@ResponseBody
 	public boolean check(@RequestBody User u) {
@@ -43,12 +55,12 @@ public class UserAction {
 		String u = map.get("name");
 		String o = map.get("old");
 		String n = map.get("new");
-		String r=map.get("PorE");
-		if(r.equals("P")) {
+		String r = map.get("PorE");
+		if (r.equals("P")) {
 			return userservice.changePass(u, o, n);
-		}else if("E".equals(r)) {
+		} else if ("E".equals(r)) {
 			return userservice.changeEmail(u, o, n);
-		}else {
+		} else {
 			return false;
 		}
 	}
