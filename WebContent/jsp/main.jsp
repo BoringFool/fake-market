@@ -333,11 +333,11 @@
 	<div class="brandwall_two">
 		<!-- brandwall_two这个class名，放前面会导致ul li下的样式无法生效，不知道什么原因。
 			点击最后一个li后ajax切换，以及切换的动态效果没有做，应该在li里面加上一个隐藏区
-			域用来存放点击跳转的地址，jq里面绑定的是“#”。
+			域用来存放点击跳转的地址，jQ里面绑定的是“#”。
 		 -->
 		<ul>
 			<li class="a_hid">
-				<!-- 这是ul中一个li的内容。需要设置li的postion：absolute，现在设置在《a》标签上 -->
+				<!-- 这是ul中一个li的内容。需要设置li的postion：absolute，现在设置在<a>标签上 -->
 				<div class="single_show">
 					<!-- 在eclipse的浏览器里面，图片周围会有一圈显示出来的border，不知道什么原因,只能加个border：none去除 -->
 					<img alt="" src="../image/shop_pic.jpg" />
