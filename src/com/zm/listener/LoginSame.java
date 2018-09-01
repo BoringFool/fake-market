@@ -1,7 +1,9 @@
 package com.zm.listener;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
@@ -54,6 +56,13 @@ public class LoginSame implements HttpSessionAttributeListener, HttpSessionListe
 				session.removeAttribute("username");
 			}
 			map.put(userName, arg0.getSession());
+			
+			Set<String> s=map.keySet();
+			Iterator<String> it=s.iterator();
+			while (it.hasNext()) {
+				String key=it.next();
+				System.out.println(map.get(key)+"***********************************");
+			}
 		}
 	}
 
